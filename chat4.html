@@ -412,7 +412,7 @@
             localMessages.forEach((msg, idx) => appendBubble(chat, msg, true, idx));
 
             if (isFirstLoad) { 
-                chat.scrollTop = chat.scrollHeight; 
+                chat.scrollTop = 0; // Starts window view cleanly from the top on entry/reload
                 isFirstLoad = false; 
             } else if (isAtBottom) { 
                 chat.scrollTop = chat.scrollHeight; 
@@ -429,7 +429,12 @@
             localStorage.setItem(STORAGE_KEY, JSON.stringify(messages));
 
             inputField.value = '';
-            loadMessages();
+            
+            await loadMessages();
+            
+            // Instantly focuses layout timeline to the latest content right after submission
+            const chat = document.getElementById('chat');
+            chat.scrollTop = chat.scrollHeight;
 
             fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
                 method: "POST",
