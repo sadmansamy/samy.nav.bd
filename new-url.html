@@ -15,7 +15,6 @@
             --accent-success: #10b981;
             --accent-success-hover: #059669;
             --accent-secondary: #6366f1;
-            --accent-secondary-hover: #4f46e5;
             --border-color: #e2e8f0;
             --radius-lg: 16px;
             --radius-md: 12px;
@@ -28,7 +27,7 @@
             background: var(--bg-gradient);
             color: var(--text-main);
             margin: 0;
-            padding: 60px 20px;
+            padding: 40px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -37,7 +36,6 @@
             box-sizing: border-box;
         }
 
-        /* Modern Card Styling */
         .card {
             background: var(--panel-bg);
             padding: 32px;
@@ -65,7 +63,6 @@
             color: var(--text-muted);
         }
 
-        /* Modern Inputs */
         input[type="url"] {
             width: 100%;
             padding: 14px 16px;
@@ -84,11 +81,9 @@
             box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
         }
 
-        /* Inline Grid Buttons */
         .btn-row {
             display: flex;
             gap: 12px;
-            margin-bottom: 0;
         }
 
         button.action-btn {
@@ -113,28 +108,6 @@
         .btn-ui { background-color: var(--accent-primary); }
         .btn-ui:hover { background-color: var(--accent-primary-hover); }
 
-        /* Moved Layout Component: View DB button styled on top of its container */
-        .database-controller {
-            max-width: 520px;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            margin-top: 12px;
-        }
-
-        .btn-view { 
-            background-color: #ffffff; 
-            color: var(--accent-secondary) !important;
-            border: 2px solid var(--accent-secondary) !important;
-            width: 100%; 
-        }
-        .btn-view:hover { 
-            background-color: var(--accent-secondary); 
-            color: #ffffff !important;
-        }
-        
-        /* Smooth Code Block Architecture */
         .result-box {
             margin-top: 24px;
             padding: 20px;
@@ -177,16 +150,16 @@
         }
         button.copy-btn:hover { background: #1e293b; }
 
-        /* Modernized List Container */
+        /* Always Visible List Layout */
         .list-card {
             background: var(--panel-bg);
             padding: 28px;
             border-radius: var(--radius-lg);
             box-shadow: var(--shadow);
+            max-width: 520px;
             width: 100%;
             box-sizing: border-box;
             border: 1px solid var(--border-color);
-            display: none;
         }
         .list-header {
             display: flex;
@@ -273,21 +246,32 @@
         </div>
     </div>
 
-    <div class="database-controller">
-        <button class="action-btn btn-view" onclick="toggleJsonListView()">View Live Link Database</button>
-        
-        <div id="listCard" class="list-card">
-            <div class="list-header">
-                <h3>Active Short Links</h3>
-                <span id="linkCount">0 links</span>
-            </div>
-            <div id="urlContainer">Loading data...</div>
+    <div id="listCard" class="list-card">
+        <div class="list-header">
+            <h3>Active Short Links</h3>
+            <span id="linkCount">0 links</span>
         </div>
+        <div id="urlContainer">Loading data...</div>
     </div>
 
     <script>
         const chars = '0123456789abcdefghijklmnopqrstuvwxyz';
         let stringToCopy = ""; 
+
+        // Automatically fetch and show links when the page finishes loading
+        window.addEventListener('DOMContentLoaded', fetchAndRenderLinks);
+
+        async function fetchAndRenderLinks() {
+            try {
+                const response = await fetch('/urls.json');
+                if (!response.ok) throw new Error();
+                const data = await response.json();
+                renderActiveLinks(data);
+            } catch (e) {
+                document.getElementById('urlContainer').innerHTML = 
+                    '<p style="color:#ef4444; font-size:14px; text-align:center;">Could not load data. Verify urls.json exists.</p>';
+            }
+        }
 
         async function generateShortUrl(isUiSelected) {
             const longUrlInput = document.getElementById('longUrl').value.trim();
@@ -336,9 +320,9 @@
                 document.getElementById('copyBtn').innerText = "Copy Code Line";
                 resultBox.style.display = 'block';
 
-                if (document.getElementById('listCard').style.display === 'block') {
-                    renderActiveLinks(existingData);
-                }
+                // Real-time addition mockup so you don't have to reload to see updates
+                existingData[pathCode] = longUrlInput;
+                renderActiveLinks(existingData);
 
             } catch (error) {
                 alert('Error: Check if urls.json is active in your GitHub root directory.');
@@ -352,25 +336,6 @@
                 copyBtn.innerText = "Copied to Clipboard!";
                 setTimeout(() => { copyBtn.innerText = "Copy Code Line"; }, 2000);
             });
-        }
-
-        async function toggleJsonListView() {
-            const listCard = document.getElementById('listCard');
-            if (listCard.style.display === 'block') {
-                listCard.style.display = 'none';
-                return;
-            }
-
-            try {
-                const response = await fetch('/urls.json');
-                if (!response.ok) throw new Error();
-                const data = await response.json();
-                
-                renderActiveLinks(data);
-                listCard.style.display = 'block';
-            } catch (e) {
-                alert('Could not fetch URL data file.');
-            }
         }
 
         function renderActiveLinks(data) {
