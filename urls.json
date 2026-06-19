@@ -1,9 +1,13 @@
 {
-  "new": "https://samy.nav.bd/new-url",
+
+"new": "https://samy.nav.bd/new-url",
+"n": "https://samy.nav.bd/new-url",
   
 
 
-  "ui-go": "https://google.com",
-  "gg": "https://google.com",
-  "aa": "https://wikipedia.org"
+
+
+"ui-go": "https://google.com",
+"gg": "https://google.com",
+"aa": "https://wikipedia.org"
 }
