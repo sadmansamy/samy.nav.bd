@@ -1,1 +1,70 @@
-index 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery</title>
+    <style>
+        body { margin: 0; background: #000; font-family: sans-serif; }
+        .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+        .gallery img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; display: block; cursor: pointer; }
+        
+        #viewer { position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); display:none; flex-direction:column; align-items:center; justify-content:center; }
+        #viewer img { max-width: 90%; max-height: 70%; object-fit: contain; }
+        .controls { color: white; margin-top: 20px; text-align: center; }
+        button { padding: 10px 20px; margin: 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+<div class="gallery" id="gallery"></div>
+
+<div id="viewer" onclick="this.style.display='none'">
+    <img id="viewImg" src="">
+    <div class="controls" onclick="event.stopPropagation()">
+        <p id="imgName"></p>
+        <button onclick="copyData()">Copy URL & Name</button>
+    </div>
+</div>
+
+<script>
+    const baseUrl = "https://samy.nav.bd/img/";
+    const gallery = document.getElementById('gallery');
+
+    // Function to create image element
+    function createImg(name) {
+        const img = document.createElement('img');
+        img.src = baseUrl + name;
+        // This mimics your friend's project: if image 404s, it hides
+        img.onerror = function() { this.style.display = 'none'; };
+        img.onclick = () => showViewer(img.src, name);
+        gallery.appendChild(img);
+    }
+
+    // 1. Add 1 to 100 images automatically
+    for(let i = 1; i <= 100; i++) {
+        createImg(i + ".png");
+    }
+
+    // 2. Load extra images from img.json
+    fetch('img.json').then(r => r.json()).then(data => {
+        data.forEach(item => createImg(item.name));
+    }).catch(() => console.log("No img.json found, skipping."));
+
+    function showViewer(src, name) {
+        document.getElementById('viewImg').src = src;
+        document.getElementById('imgName').innerText = name;
+        document.getElementById('viewer').style.display = 'flex';
+    }
+
+    function copyData() {
+        const url = document.getElementById('viewImg').src;
+        const name = document.getElementById('imgName').innerText;
+        navigator.clipboard.writeText(`URL: ${url}\nName: ${name}`);
+        alert("Copied to clipboard!");
+    }
+</script>
+
+</body>
+</html>
+ 
