@@ -1,6 +1,6 @@
 [
-    {"name": "bing.webp"},
-    {"name": "brave.webp"},
-    {"name": "duckduckgo.webp"},
-    {"name": "google.webp"}
+    "bing.webp",
+    "brave.webp",
+    "duckduckgo.webp",
+    "google.webp"
 ]
