@@ -1,24 +1,15 @@
 {
-  "short_name": "Samy Search",
   "name": "Samy Search",
-  "icons": [
-    {
-      "src": "../icon.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "../icon.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any"
-    }
-  ],
-  "start_url": "/search/index.html",
-  "scope": "/search/",
+  "short_name": "Samy",
+  "start_url": "/",
+  "display": "standalone",
   "background_color": "#f5f5f7",
   "theme_color": "#f5f5f7",
-  "display": "standalone",
-  "orientation": "portrait"
+  "icons": [
+    {
+      "src": "/icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
 }
