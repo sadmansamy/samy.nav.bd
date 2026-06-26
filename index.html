@@ -67,8 +67,6 @@
         .history-item:hover { background: var(--bg-color); }
         .history-content { display: flex; align-items: center; gap: 12px; color: var(--text-main); font-size: 15px; flex: 1; min-width: 0; }
         .history-content span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .history-clock-icon { color: var(--text-muted); display: flex; align-items: center; flex-shrink: 0; }
-        .history-clock-icon svg { width: 16px; height: 16px; fill: currentColor; }
 
         .section-container { width: 100%; display: flex; flex-direction: column; gap: 12px; }
         .section-header { display: flex; align-items: center; gap: 8px; padding-left: 8px; }
@@ -366,6 +364,9 @@
     function navigateToSite() { const i = urlInput.value.trim(); if (!i) return; saveSearchHistory(i); window.location.href = (/^https?:\/\//i.test(i) || /\./.test(i)) ? (i.startsWith('http') ? i : 'https://' + i) : engines[currentEngine] + encodeURIComponent(i); }
     function navigateToCustomPath() { const i = urlInput.value.trim(); if (i) { saveSearchHistory(i); window.location.href = "https://samy.pro.bd/" + i.toLowerCase().replace(/[^a-z0-9-_\/]/g, ''); } }
     
+    // Preferences initialization call
+    loadPreferences();
+
     if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
     document.addEventListener("DOMContentLoaded", loadShortcuts);
 </script>
