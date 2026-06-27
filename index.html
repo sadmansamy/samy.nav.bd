@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="description" content="A personal, minimalist search hub and bookmark portal. Quickly search using Google, Brave, DuckDuckGo, Bing and access your custom web shortcuts from one organized dashboard.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Qsamy Search</title>
-    <link href="https://samy.pro.bd/favicon.ico" rel="icon" type="image/x-icon" />
+    <link href="icon.png" rel="icon" type="image/png" />
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#f5f5f7" id="theme-color-meta">
     
@@ -364,9 +365,7 @@
     function navigateToSite() { const i = urlInput.value.trim(); if (!i) return; saveSearchHistory(i); window.location.href = (/^https?:\/\//i.test(i) || /\./.test(i)) ? (i.startsWith('http') ? i : 'https://' + i) : engines[currentEngine] + encodeURIComponent(i); }
     function navigateToCustomPath() { const i = urlInput.value.trim(); if (i) { saveSearchHistory(i); window.location.href = "https://samy.pro.bd/" + i.toLowerCase().replace(/[^a-z0-9-_\/]/g, ''); } }
     
-    // Preferences initialization call
     loadPreferences();
-
     if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
     document.addEventListener("DOMContentLoaded", loadShortcuts);
 </script>
