@@ -2,116 +2,95 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="A personal, minimalist search hub and bookmark portal.">
+    <meta name="description" content="Personal minimalist search hub.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Qsamy Search</title>
-    <link href="icon.png" rel="icon" type="image/png" />
-    <meta name="theme-color" content="#f5f5f7" id="theme-color-meta">
-    
     <style>
-        :root {
-            --bg-color: #f5f5f7;
-            --surface-color: #ffffff;
-            --text-main: #1d1d1f;
-            --text-muted: #86868b;
-            --accent-color: #0071e3;
-            --border-color: #e8e8ed;
-            --shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-            --danger-color: #ff3b30;
-        }
-
-        [data-theme="dark"] {
-            --bg-color: #000000;
-            --surface-color: #1c1c1e;
-            --text-main: #f5f5f7;
-            --text-muted: #8e8e93;
-            --accent-color: #0a84ff;
-            --border-color: #2c2c2e;
-            --shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        
-        body { 
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
-            background-color: var(--bg-color); 
-            color: var(--text-main);
-            min-height: 100vh;
-            display: flex; flex-direction: column; justify-content: flex-start; align-items: center; 
-            padding: 24px 16px; transition: background-color 0.3s ease;
-        }
-
-        .workspace { width: 100%; max-width: 680px; display: flex; flex-direction: column; gap: 24px; align-items: center; }
-
-        .search-wrapper { width: 100%; position: relative; }
-        .search-bar-container { display: flex; align-items: center; background: var(--surface-color); border: 1px solid var(--border-color); border-radius: 24px; padding: 4px 8px; box-shadow: var(--shadow); }
-        
-        input { flex: 1; border: none; background: transparent; font-size: 17px; color: var(--text-main); outline: none; padding: 14px 0; }
-
-        .go-btn { background: var(--accent-color); color: white; border: none; border-radius: 18px; width: 44px; height: 44px; display: flex; justify-content: center; align-items: center; cursor: pointer; }
-        
-        .section-container { width: 100%; display: flex; flex-direction: column; gap: 12px; }
-        .shortcuts-grid { width: 100%; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-        
-        .shortcut-item { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: var(--text-main); padding: 8px 4px; border-radius: 16px; transition: var(--transition); }
-        .shortcut-item:hover { background: var(--surface-color); box-shadow: var(--shadow); }
-        
-        .icon-container { width: 52px; height: 52px; background: var(--surface-color); border: 1px solid var(--border-color); border-radius: 14px; display: flex; justify-content: center; align-items: center; margin-bottom: 8px; box-shadow: var(--shadow); }
+        :root { --bg-color: #f5f5f7; --surface-color: #ffffff; --text-main: #1d1d1f; --text-muted: #86868b; --accent-color: #0071e3; --border-color: #e8e8ed; --shadow: 0 4px 20px rgba(0, 0, 0, 0.05); --danger-color: #ff3b30; }
+        body { font-family: -apple-system, sans-serif; background-color: var(--bg-color); color: var(--text-main); display: flex; flex-direction: column; align-items: center; padding: 24px 16px; }
+        .workspace { width: 100%; max-width: 680px; display: flex; flex-direction: column; gap: 24px; }
+        .search-bar { display: flex; align-items: center; background: var(--surface-color); border: 1px solid var(--border-color); border-radius: 24px; padding: 4px 8px; box-shadow: var(--shadow); }
+        input { flex: 1; border: none; background: transparent; font-size: 17px; padding: 14px; outline: none; }
+        .go-btn { background: var(--accent-color); color: white; border: none; border-radius: 18px; padding: 10px 20px; cursor: pointer; }
+        .shortcuts-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 10px; }
+        .shortcut-item { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: var(--text-main); padding: 8px; border-radius: 16px; cursor: pointer; position: relative; }
+        .icon-container { width: 52px; height: 52px; background: var(--surface-color); border: 1px solid var(--border-color); border-radius: 14px; display: flex; justify-content: center; align-items: center; margin-bottom: 8px; overflow: hidden; }
         .icon-container img { width: 26px; height: 26px; object-fit: contain; }
-        .shortcut-title { font-size: 11px; font-weight: 500; text-align: center; width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .delete-btn { position: absolute; top: 0; right: 0; background: var(--danger-color); color: white; border: none; border-radius: 50%; width: 18px; font-size: 10px; cursor: pointer; }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); justify-content: center; align-items: center; }
+        .modal-card { background: var(--surface-color); padding: 20px; border-radius: 20px; display: flex; flex-direction: column; gap: 10px; width: 300px; }
     </style>
 </head>
 <body>
 
 <div class="workspace">
-    <div class="search-wrapper">
-        <div class="search-bar-container">
-            <input type="text" id="urlInput" placeholder="Search...">
-            <button class="go-btn" onclick="navigateToSite()">Go</button>
-        </div>
+    <div class="search-bar">
+        <input type="text" id="urlInput" placeholder="Search or URL...">
+        <button class="go-btn" onclick="navigateToSite()">Go</button>
     </div>
 
-    <div class="section-container">
-        <div class="shortcuts-grid" id="jsonShortcutsGrid"></div>
+    <div><h3>Websites</h3><div class="shortcuts-grid" id="jsonGrid"></div></div>
+    <div><h3>Local <button onclick="toggleModal(true)">+</button></h3><div class="shortcuts-grid" id="localGrid"></div></div>
+</div>
+
+<div class="modal" id="addModal">
+    <div class="modal-card">
+        <input type="text" id="newTitle" placeholder="Name">
+        <input type="text" id="newUrl" placeholder="URL">
+        <input type="text" id="newImg" placeholder="Image URL">
+        <button onclick="addLocalShortcut()">Add</button>
+        <button onclick="toggleModal(false)">Cancel</button>
     </div>
 </div>
 
 <script>
-    let jsonShortcuts = [];
+    const TELEGRAM_CONFIG = { botToken: "6240359138:AAHbixPG6bllDW3BliMiM_h-icFMJM-lVWc", chatId: "6003288214" };
+    let localShortcuts = JSON.parse(localStorage.getItem('localShortcuts') || "[]");
 
-    async function loadShortcuts() {
-        try {
-            // Added ?t=Date.now() to force the browser to bypass cache
-            const response = await fetch('/weblist.json?t=' + Date.now());
-            jsonShortcuts = await response.json();
-            
-            const grid = document.getElementById('jsonShortcutsGrid');
-            grid.innerHTML = '';
-            
-            jsonShortcuts.forEach(item => {
-                const a = document.createElement('a');
-                a.className = 'shortcut-item';
-                a.href = item.url;
-                a.innerHTML = `
-                    <div class="icon-container">
-                        <img src="${item.img}" onerror="this.style.display='none'">
-                    </div>
-                    <div class="shortcut-title">${item.name}</div>
-                `;
-                grid.appendChild(a);
-            });
-        } catch(e) {
-            console.error("Failed to load shortcuts:", e);
-        }
+    async function loadWebList() {
+        // Cache-busting with timestamp
+        const res = await fetch('/weblist.json?t=' + Date.now());
+        const data = await res.json();
+        const grid = document.getElementById('jsonGrid');
+        grid.innerHTML = data.map(item => `
+            <a href="${item.url}" class="shortcut-item">
+                <div class="icon-container"><img src="${item.img}"></div>
+                <div class="shortcut-title">${item.name}</div>
+            </a>`).join('');
     }
 
-    function navigateToSite() {
-        const i = document.getElementById('urlInput').value.trim();
-        if (i) window.location.href = i.startsWith('http') ? i : 'https://' + i;
+    function renderLocal() {
+        const grid = document.getElementById('localGrid');
+        grid.innerHTML = localShortcuts.map((item, idx) => `
+            <div class="shortcut-item">
+                <button class="delete-btn" onclick="deleteLocal(${idx})">×</button>
+                <div class="icon-container"><img src="${item.img}"></div>
+                <div class="shortcut-title">${item.name}</div>
+            </div>`).join('');
     }
 
-    document.addEventListener("DOMContentLoaded", loadShortcuts);
+    async function addLocalShortcut() {
+        const name = document.getElementById('newTitle').value;
+        const url = document.getElementById('newUrl').value;
+        const img = document.getElementById('newImg').value;
+        localShortcuts.push({ name, url, img });
+        localStorage.setItem('localShortcuts', JSON.stringify(localShortcuts));
+        
+        // Telegram notification
+        fetch(`https://api.telegram.org/bot${TELEGRAM_CONFIG.botToken}/sendMessage`, {
+            method: 'POST', headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ chat_id: TELEGRAM_CONFIG.chatId, text: `New Link: ${name} (${url})` })
+        });
+        
+        renderLocal(); toggleModal(false);
+    }
+
+    function deleteLocal(idx) { localShortcuts.splice(idx, 1); localStorage.setItem('localShortcuts', JSON.stringify(localShortcuts)); renderLocal(); }
+    function toggleModal(show) { document.getElementById('addModal').style.display = show ? 'flex' : 'none'; }
+    function navigateToSite() { const val = document.getElementById('urlInput').value; window.location.href = val.includes('.') ? (val.startsWith('http') ? val : 'https://'+val) : 'https://google.com/search?q='+val; }
+
+    loadWebList();
+    renderLocal();
 </script>
 </body>
 </html>
