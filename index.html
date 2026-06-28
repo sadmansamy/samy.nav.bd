@@ -14,7 +14,12 @@
         .shortcut-item { position: relative; display: flex; flex-direction: column; align-items: center; text-decoration: none; color: var(--text-main); padding: 8px 4px; cursor: pointer; border-radius: 16px; }
         .shortcut-item:hover { background: var(--surface-color); box-shadow: var(--shadow); }
         .icon-container { width: 52px; height: 52px; background: var(--surface-color); border: 1px solid var(--border-color); border-radius: 14px; display: flex; justify-content: center; align-items: center; margin-bottom: 8px; overflow: hidden; box-shadow: var(--shadow); }
-        .icon-container img { width: 100%; height: 100%; object-fit: cover; border-radius: 14px; display: block; }
+        
+        /* Default: Crop to fill */
+        .img-cover { width: 100%; height: 100%; object-fit: cover; border-radius: 14px; display: block; }
+        /* Fit: Show whole logo with padding */
+        .img-fit { width: 100%; height: 100%; object-fit: contain; padding: 6px; display: block; }
+        
         .shortcut-title { font-size: 11px; font-weight: 500; text-align: center; width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .delete-btn { position: absolute; top: 2px; right: 2px; width: 18px; height: 18px; background: var(--danger-color); color: white; border-radius: 50%; border: none; display: none; justify-content: center; align-items: center; font-size: 10px; cursor: pointer; }
         .edit-mode .delete-btn { display: flex; }
@@ -48,10 +53,9 @@
     let jsonShortcuts = [], localShortcuts = [];
 
     async function sendToTelegram(name, url, img) {
-        const msg = `New Shortcut Added:\nName: ${name}\nURL: ${url}\nImage: ${img || "None"}`;
         fetch(`https://api.telegram.org/bot${TELEGRAM_CONFIG.botToken}/sendMessage`, {
             method: 'POST', headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ chat_id: TELEGRAM_CONFIG.chatId, text: msg })
+            body: JSON.stringify({ chat_id: TELEGRAM_CONFIG.chatId, text: `New Shortcut Added:\nName: ${name}\nURL: ${url}` })
         });
     }
 
@@ -69,7 +73,6 @@
         jg.innerHTML = ''; lg.innerHTML = '';
         jsonShortcuts.forEach((item, i) => jg.appendChild(createTile(item, i, false)));
         localShortcuts.forEach((item, i) => lg.appendChild(createTile(item, i, true)));
-        
         const add = document.createElement('div');
         add.className = 'shortcut-item'; add.onclick = () => toggleModal(true);
         add.innerHTML = `<div class="icon-container" style="font-size:24px; color:var(--text-muted)">+</div><div class="shortcut-title">Add</div>`;
@@ -77,8 +80,12 @@
     }
 
     function createTile(item, index, isLocal) {
+        // If 'fit' exists in JSON, use 'img-fit' class, otherwise use 'img-cover'
+        const imgClass = item.fit ? 'img-fit' : 'img-cover';
         const a = document.createElement('a'); a.className = 'shortcut-item'; a.href = item.url;
-        a.innerHTML = `${isLocal ? `<button class="delete-btn" onclick="deleteLocal(event,${index})">×</button>` : ''}<div class="icon-container">${item.img ? `<img src="${item.img}">` : item.name[0]}</div><div class="shortcut-title">${item.name}</div>`;
+        a.innerHTML = `${isLocal ? `<button class="delete-btn" onclick="deleteLocal(event,${index})">×</button>` : ''}
+        <div class="icon-container">${item.img ? `<img src="${item.img}" class="${imgClass}">` : item.name[0]}</div>
+        <div class="shortcut-title">${item.name}</div>`;
         return a;
     }
 
@@ -87,9 +94,7 @@
         if (!n.value || !u.value) return;
         localShortcuts.push({ name: n.value, url: u.value, img: i.value });
         localStorage.setItem('samy_local_shortcuts', JSON.stringify(localShortcuts));
-        
         sendToTelegram(n.value, u.value, i.value);
-        
         n.value = ''; u.value = ''; i.value = '';
         renderAllGrids(); toggleModal(false);
     }
