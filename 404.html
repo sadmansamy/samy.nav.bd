@@ -18,21 +18,17 @@
             text-align: center;
         }
 
-        .container { display: flex; flex-direction: column; align-items: center; }
+        .container { display: flex; flex-direction: column; align-items: center; width: 90%; max-width: 400px; }
 
-        /* GitHub Icon replacing the '0' */
-        .header-404 { font-size: 120px; font-weight: 800; color: #ffffff; display: flex; align-items: center; margin-bottom: 10px; }
+        .header-404 { font-size: 120px; font-weight: 800; color: #ffffff; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
         .github-icon { width: 90px; height: 90px; fill: #ffffff; margin: 0 5px; }
 
         h2 { font-size: 24px; color: #ffffff; margin-bottom: 24px; }
 
-        .action-box { display: flex; gap: 8px; margin-bottom: 24px; }
-        input { padding: 10px 14px; border-radius: 6px; border: 1px solid #30363d; background: #0d1117; color: white; width: 220px; outline: none; }
+        .action-box { display: flex; gap: 8px; width: 100%; margin-bottom: 20px; }
+        input { flex: 1; padding: 10px 14px; border-radius: 6px; border: 1px solid #30363d; background: #0d1117; color: white; outline: none; }
         button { padding: 8px 16px; border-radius: 6px; border: 1px solid #30363d; background: #21262d; color: white; cursor: pointer; font-weight: 500; }
         button:hover { background: #30363d; }
-
-        .footer { color: #8b949e; font-size: 14px; }
-        .footer a { color: #58a6ff; text-decoration: none; }
     </style>
 </head>
 <body>
@@ -48,16 +44,11 @@
 
         <div class="action-box">
             <input type="text" placeholder="Search..." id="urlInput" onkeydown="if(event.key==='Enter') goToPath()">
-            <button onclick="window.location.href='https://samy.pro.bd'">Go Home</button>
-        </div>
-
-        <div class="footer">
-            Contact Support — <a href="#">Qsamy Status</a>
+            <button onclick="goToPath()">Search</button>
         </div>
     </div>
 
     <script>
-        // Redirect logic for path-based navigation
         function goToPath() {
             const input = document.getElementById('urlInput').value.trim();
             if (input) window.location.href = "https://samy.nav.bd/" + input;
@@ -65,7 +56,7 @@
 
         async function handleHybridRedirect() {
             const path = window.location.pathname.replace(/^\/|\/$/g, '').toLowerCase();
-            if (!path) return;
+            if (!path || path === "404.html") return;
 
             try {
                 const response = await fetch('/urls.json');
