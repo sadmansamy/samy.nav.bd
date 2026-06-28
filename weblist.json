@@ -1,10 +1,5 @@
 [
   {
-    "name": "Google",
-    "url": "https://www.google.com",
-    "img": "https://www.google.com/favicon.ico"
-  },
-  {
     "name": "YouTube",
     "url": "https://www.youtube.com",
     "img": "https://play-lh.googleusercontent.com/QNmuZQc9I6Zbe3mWnSr0hycnENqGFCI5p3yE29Hkxtf22T0IWS6zTrpxULLyyjWpB7ONAXDsDQXnXcVWokl3eg"
@@ -24,22 +19,7 @@
     "url": "https://sflix.film/",
     "img": "https://samy.nav.bd/img/sflix.film.png"
   },
-  {
-    "name": "Reddit",
-    "url": "https://www.reddit.com",
-    "img": "https://www.redditstatic.com/desktop2x/img/favicon/apple-icon-180x180.png"
-  },
-  {
-    "name": "ChatGPT",
-    "url": "https://chatgpt.com",
-    "img": "https://chatgpt.com/favicon.ico"
-  },
-  {
-    "name": "Twitter / X",
-    "url": "https://x.com",
-    "img": "https://abs.twimg.com/favicons/twitter.3.ico"
-  },
-  {
+ {
     "name": "Samy",
     "url": "https://samy.pro.bd/home",
     "img": "https://samy.pro.bd/favicon.ico"
@@ -47,6 +27,11 @@
   {
     "name": "TBCPL",
     "url": "https://tbcpl.lol/",
-    "img": "https://tbcpl.lol/_next/image?url=%2Flogo.png&w=64&q=75"
+    "img": "https://tbcpl.lol/_next/image?url=%2Flogo.png&w=64&q=75",
+ {
+    "name": "Local Weblist",
+    "url": "https://3.s33.pages.dev",
+    "img": "https://samy.nav.bd/img/23.png"
+  }
   }
 ]
