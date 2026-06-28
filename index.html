@@ -343,29 +343,49 @@
         if (!img || /^https?:\/\//i.test(img) || img.startsWith('data:')) return img;
         return (!isLocal && !img.startsWith('/')) ? '/img/' + img : (img.startsWith('/') ? img : '/' + img);
     }
-
     async function createTile(item, index, isLocal) {
-        const a = document.createElement('a'); a.className = 'shortcut-item'; a.href = item.url;
-        a.innerHTML = `${isLocal ? `<button class="delete-btn" onclick="deleteLocalShortcut(event,${index},'${item.img}')">×</button>` : ''}<div class="icon-container">${getFallback(item.name)}</div><div class="shortcut-title">${item.name}</div>`;
-        if (isLocal && item.img.startsWith('db_img_')) {
-            const b64 = await getImageFromDB(item.img);
-            if (b64) a.querySelector('.icon-container').innerHTML = `<img src="${b64}">`;
-        } else {
+        const a = document.createElement('a'); 
+        a.className = 'shortcut-item'; 
+        a.href = item.url;
+        
+        // Use an ID or fallback
+        const imgContent = await (async () => {
+            if (isLocal && item.img.startsWith('db_img_')) {
+                const b64 = await getImageFromDB(item.img);
+                return b64 ? `<img src="${b64}">` : getFallback(item.name);
+            }
             const url = parseLogoUrl(item.img, isLocal);
-            if (url) a.querySelector('.icon-container').innerHTML = `<img src="${url}" onerror="this.outerHTML=getFallback('${item.name}')">`;
-        }
+            return `<img src="${url}" onerror="this.outerHTML=getFallback('${item.name}')">`;
+        })();
+
+        a.innerHTML = `${isLocal ? `<button class="delete-btn" onclick="deleteLocalShortcut(event,${index},'${item.img}')">×</button>` : ''}
+                       <div class="icon-container">${imgContent}</div>
+                       <div class="shortcut-title">${item.name}</div>`;
         return a;
     }
 
     async function renderAllGrids() {
-        const jg = document.getElementById('jsonShortcutsGrid'), lg = document.getElementById('localShortcutsGrid');
-        jg.innerHTML = ''; lg.innerHTML = '';
-        for (const [i, item] of jsonShortcuts.entries()) jg.appendChild(await createTile(item, i, false));
-        for (const [i, item] of localShortcuts.entries()) lg.appendChild(await createTile(item, i, true));
-        const add = document.createElement('div'); add.className = 'shortcut-item'; add.onclick = () => toggleModal(true);
+        const jg = document.getElementById('jsonShortcutsGrid'), 
+              lg = document.getElementById('localShortcutsGrid');
+        
+        jg.innerHTML = ''; 
+        lg.innerHTML = '';
+        
+        for (const [i, item] of jsonShortcuts.entries()) {
+            jg.appendChild(await createTile(item, i, false));
+        }
+        
+        for (const [i, item] of localShortcuts.entries()) {
+            lg.appendChild(await createTile(item, i, true));
+        }
+        
+        const add = document.createElement('div'); 
+        add.className = 'shortcut-item'; 
+        add.onclick = () => toggleModal(true);
         add.innerHTML = `<div class="icon-container"><div class="icon-plus">+</div></div><div class="shortcut-title">Add Link</div>`;
         lg.appendChild(add);
     }
+
 
     function handleFileSelect(e) { const f = e.target.files[0]; if(!f) return; const r = new FileReader(); r.onload = (e) => { temporaryBase64 = e.target.result; document.getElementById('fileLabel').innerText = "✅ " + f.name; }; r.readAsDataURL(f); }
     function toggleEditMode() { isEditMode = !isEditMode; localGrid.classList.toggle('edit-mode', isEditMode); editToggleBtn.classList.toggle('active', isEditMode); }
