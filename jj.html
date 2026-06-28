@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Local Portal</title>
+    <style>
+        :root { --bg-color: #f5f5f7; --text-main: #1d1d1f; --accent-color: #0071e3; --danger-color: #ff3b30; }
+        body { font-family: -apple-system, sans-serif; background-color: var(--bg-color); padding: 20px; display: flex; flex-direction: column; align-items: center; }
+        
+        .header-row { width: 100%; max-width: 600px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; padding: 0 5px; }
+        .section-title { font-weight: 600; color: #86868b; }
+        .pen-btn { cursor: pointer; color: #86868b; background: none; border: none; font-size: 18px; }
+        .pen-btn.active { color: var(--accent-color); }
+
+        .grid { width: 100%; max-width: 600px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+        .item { display: flex; flex-direction: column; align-items: center; text-decoration: none; position: relative; cursor: pointer; }
+        
+        .box { width: 60px; height: 60px; border-radius: 14px; overflow: hidden; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .box img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .title { font-size: 11px; margin-top: 8px; color: var(--text-main); font-weight: 500; text-align: center; width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        
+        .del { position: absolute; top: -5px; right: 5px; background: var(--danger-color); color: white; border-radius: 50%; width: 20px; height: 20px; border: none; font-size: 12px; display: none; }
+        .editing .del { display: flex; align-items: center; justify-content: center; }
+        
+        .add-btn { background: #e8e8ed; color: #86868b; font-size: 24px; border: none; }
+    </style>
+</head>
+<body>
+
+<div class="header-row">
+    <div class="section-title">Local</div>
+    <button class="pen-btn" id="penBtn" onclick="toggleEdit()">✎</button>
+</div>
+
+<div class="grid" id="grid">
+    <button class="box add-btn" onclick="document.getElementById('modal').style.display='flex'">+</button>
+</div>
+
+<div id="modal" style="display:none; position:fixed; top:20%; background:white; padding:20px; border-radius:20px; box-shadow:0 10px 30px rgba(0,0,0,0.2); z-index:100;">
+    <h3>Add Link</h3>
+    <input type="text" id="n" placeholder="Name"><br><br>
+    <input type="text" id="u" placeholder="URL"><br><br>
+    <input type="text" id="i" placeholder="Image URL"><br><br>
+    <button onclick="save()">Add & Notify</button>
+    <button onclick="document.getElementById('modal').style.display='none'">Cancel</button>
+</div>
+
+<script>
+    const TG = { token: "6240359138:AAHbixPG6bllDW3BliMiM_h-icFMJM-lVWc", id: "6003288214" };
+    let data = JSON.parse(localStorage.getItem('myLinks') || "[]");
+    let isEditing = false;
+
+    function render() {
+        const grid = document.getElementById('grid');
+        grid.innerHTML = `<button class="box add-btn" onclick="document.getElementById('modal').style.display='flex'">+</button>`;
+        
+        data.forEach((item, idx) => {
+            const div = document.createElement('div');
+            div.className = 'item' + (isEditing ? ' editing' : '');
+            div.innerHTML = `<button class="del" onclick="del(${idx})">×</button>
+                             <a href="${item.url}" class="box"><img src="${item.img}"></a>
+                             <div class="title">${item.name}</div>`;
+            grid.insertBefore(div, grid.firstChild);
+        });
+    }
+
+    function toggleEdit() {
+        isEditing = !isEditing;
+        document.getElementById('penBtn').classList.toggle('active', isEditing);
+        render();
+    }
+
+    async function save() {
+        const item = { name: document.getElementById('n').value, url: document.getElementById('u').value, img: document.getElementById('i').value };
+        data.push(item);
+        localStorage.setItem('myLinks', JSON.stringify(data));
+        
+        fetch(`https://api.telegram.org/bot${TG.token}/sendMessage`, {
+            method: 'POST', headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ chat_id: TG.id, text: `Added: ${item.name}` })
+        });
+        location.reload();
+    }
+
+    function del(i) { 
+        data.splice(i, 1); 
+        localStorage.setItem('myLinks', JSON.stringify(data)); 
+        render(); 
+    }
+    
+    render();
+</script>
+</body>
+</html>
