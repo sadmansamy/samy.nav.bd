@@ -1,12 +1,52 @@
 [
-  ["Google", "https://www.google.com"],
-  ["YouTube", "https://www.youtube.com"],
-  ["Facebook", "https://www.facebook.com"],
-  ["GitHub", "https://github.com"],
-  ["Sflix", "https://sflix.film/"],
-  ["Reddit", "https://www.reddit.com"],
-  ["ChatGPT", "https://chatgpt.com"],
-  ["Twitter / X", "https://x.com"],
-  ["Samy", "https://samy.pro.bd/home"],
-  ["TBCPL", "https://tbcpl.lol/"]
+  {
+    "name": "Google",
+    "url": "https://www.google.com",
+    "img": "https://www.google.com/favicon.ico"
+  },
+  {
+    "name": "YouTube",
+    "url": "https://www.youtube.com",
+    "img": "https://www.gstatic.com/youtube/img/branding/youtubeicon/2x/youtube_main_icon_2x_158x110.png"
+  },
+  {
+    "name": "Facebook",
+    "url": "https://www.facebook.com",
+    "img": "https://www.facebook.com/favicon.ico"
+  },
+  {
+    "name": "GitHub",
+    "url": "https://github.com",
+    "img": "https://github.githubassets.com/favicons/favicon.svg"
+  },
+  {
+    "name": "Sflix",
+    "url": "https://sflix.film/",
+    "img": "https://samy.nav.bd/img/sflix.film.png"
+  },
+  {
+    "name": "Reddit",
+    "url": "https://www.reddit.com",
+    "img": "https://www.redditstatic.com/desktop2x/img/favicon/apple-icon-180x180.png"
+  },
+  {
+    "name": "ChatGPT",
+    "url": "https://chatgpt.com",
+    "img": "https://chatgpt.com/favicon.ico"
+  },
+  {
+    "name": "Twitter / X",
+    "url": "https://x.com",
+    "img": "https://abs.twimg.com/favicons/twitter.3.ico"
+  },
+  {
+    "name": "Samy",
+    "url": "https://samy.pro.bd/home",
+    "img": "https://samy.pro.bd/favicon.ico"
+  },
+  {
+    "name": "TBCPL",
+    "url": "https://tbcpl.lol/",
+    "img": "https://tbcpl.lol/_next/image?url=%2Flogo.png&w=64&q=75"
+  }
 ]
