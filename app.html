@@ -17,7 +17,8 @@
         /* Modal Styles */
         #modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 1000; justify-content: center; align-items: center; }
         .modal-content { background: #fff; width: 85%; max-width: 400px; padding: 25px; border-radius: 28px; text-align: center; }
-        .source-btn { display: block; width: 100%; padding: 12px; margin: 10px 0; background: #f1f3f4; border: none; border-radius: 12px; font-weight: 600; cursor: pointer; }
+        /* URL buttons now show the full URL text */
+        .source-btn { display: block; width: 100%; padding: 12px; margin: 10px 0; background: #f1f3f4; border: none; border-radius: 12px; font-weight: 600; cursor: pointer; font-size: 11px; word-break: break-all; }
     </style>
 </head>
 <body>
@@ -37,10 +38,12 @@
         const container = document.getElementById('container');
         let currentGallery;
 
+        // The ?t= timestamp forces an instant refresh when you change your JSON file
         fetch('app.json?t=' + Date.now())
             .then(r => r.json())
             .then(data => {
                 data.forEach(item => {
+                    // Logic: If no 'img' field, it is a Section header
                     if (!item.img) {
                         let h2 = document.createElement('h2');
                         h2.className = "section-title";
@@ -50,28 +53,32 @@
                         currentGallery.className = "gallery";
                         container.appendChild(currentGallery);
                     } else {
+                        // Otherwise, it is an App item
                         let div = document.createElement('div');
                         div.className = "app-item";
                         div.innerHTML = `<img src="${item.img}"> <div class="app-title">${item.name}</div>`;
                         
+                        // Image click: Open first link
                         div.querySelector('img').onclick = () => window.location.href = item.urls[0];
                         
+                        // Title click: Show modal
                         div.querySelector('.app-title').onclick = () => {
                             document.getElementById('mName').innerText = item.name;
                             document.getElementById('mDis').innerText = item.dis;
                             document.getElementById('mImg').src = item.img;
                             let mLinks = document.getElementById('mLinks');
                             mLinks.innerHTML = "";
-                            // Changed button text to "URL"
+                            // Show full URL as button label
                             item.urls.forEach((u) => {
-                                mLinks.innerHTML += `<button class="source-btn" onclick="window.location.href='${u}'">URL</button>`;
+                                mLinks.innerHTML += `<button class="source-btn" onclick="window.location.href='${u}'">${u}</button>`;
                             });
                             document.getElementById('modal').style.display = 'flex';
                         };
                         currentGallery.appendChild(div);
                     }
                 });
-            });
+            })
+            .catch(err => console.error("Error loading app.json:", err));
     </script>
 </body>
 </html>
