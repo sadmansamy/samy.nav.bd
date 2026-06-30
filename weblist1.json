@@ -43,5 +43,15 @@
     "name": "SyncTube",
     "url": "https://sync-tube.de/",
     "img": "https://sync-tube.de/favicon.ico"
+  },
+  {
+    "name": "SyncTube",
+    "url": "https://sync-tube.de/",
+    "img": ",
+  {
+    "name": "Favicon Checker",
+    "url": "https://faviconcheck.tamethebots.com/",
+    "img": "https://faviconcheck.tamethebots.com/favicon.png"
+  }"
   }
 ]
