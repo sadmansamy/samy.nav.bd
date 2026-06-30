@@ -41,7 +41,6 @@
             .then(r => r.json())
             .then(data => {
                 data.forEach(item => {
-                    // If no 'img', treat as Section
                     if (!item.img) {
                         let h2 = document.createElement('h2');
                         h2.className = "section-title";
@@ -55,18 +54,17 @@
                         div.className = "app-item";
                         div.innerHTML = `<img src="${item.img}"> <div class="app-title">${item.name}</div>`;
                         
-                        // Image Click: Forward to first link
                         div.querySelector('img').onclick = () => window.location.href = item.urls[0];
                         
-                        // Title Click: Open Popup
                         div.querySelector('.app-title').onclick = () => {
                             document.getElementById('mName').innerText = item.name;
                             document.getElementById('mDis').innerText = item.dis;
                             document.getElementById('mImg').src = item.img;
                             let mLinks = document.getElementById('mLinks');
                             mLinks.innerHTML = "";
-                            item.urls.forEach((u, i) => {
-                                mLinks.innerHTML += `<button class="source-btn" onclick="window.location.href='${u}'">Source ${i+1}</button>`;
+                            // Changed button text to "URL"
+                            item.urls.forEach((u) => {
+                                mLinks.innerHTML += `<button class="source-btn" onclick="window.location.href='${u}'">URL</button>`;
                             });
                             document.getElementById('modal').style.display = 'flex';
                         };
