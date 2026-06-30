@@ -3,39 +3,46 @@
 <head>
     <style>
         body { margin: 0; padding: 10px; font-family: sans-serif; }
+        
         .app-grid { 
             display: grid; 
+            /* This forces 3 columns with equal width */
             grid-template-columns: repeat(3, 1fr); 
-            gap: 25px 15px; /* Spacing between rows and columns */
-            padding: 10px;
+            /* Reduce gap to make it look like Play Store */
+            gap: 15px 10px; 
+            padding: 5px;
         }
+        
         .app-item { 
             text-align: center; 
-            cursor: pointer;
             display: flex;
             flex-direction: column;
             align-items: center;
+            /* Prevents the item from growing too wide */
+            max-width: 100px; 
+            margin: 0 auto;
         }
+        
         .app-item img { 
-            width: 100%; /* Force the icon to fill the grid column */
-            max-width: 120px; /* Limits size on very large screens */
-            aspect-ratio: 1 / 1; /* Keeps it perfectly square */
-            border-radius: 22px; /* Standard Android rounded-square */
+            width: 100%; 
+            aspect-ratio: 1 / 1; 
+            border-radius: 20px; 
             object-fit: cover;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15); /* Adds depth */
+            /* This shadow makes it look like a physical card */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
         }
+        
         .app-title { 
-            font-size: 13px; 
-            margin-top: 10px; 
-            line-height: 1.3;
-            color: #333;
+            font-size: 12px; 
+            margin-top: 6px; 
+            line-height: 1.2;
+            color: #202124;
             display: -webkit-box; 
-            -webkit-line-clamp: 2; /* Truncate after 2 lines */
+            -webkit-line-clamp: 2; 
             -webkit-box-orient: vertical; 
             overflow: hidden; 
             text-overflow: ellipsis; 
             width: 100%;
-            padding: 0 2px;
         }
     </style>
 </head>
@@ -44,7 +51,6 @@
 <div class="app-grid" id="appContainer"></div>
 
 <script>
-    // Fetching with a timestamp to prevent caching
     fetch('app.json?t=' + Date.now())
         .then(response => response.json())
         .then(data => {
