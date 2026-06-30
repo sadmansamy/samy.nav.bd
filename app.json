@@ -1,42 +1,34 @@
 [
+  { "name": "Recommended Apps" },
   {
-    "title": "Dummy",
-    "url": "https://ih1.redbubble.net/image.1863076614.4181/st,small,507x507-pad,600x600,f8f8f8.jpg",
-    "img": "https://ih1.redbubble.net/image.1863076614.4181/st,small,507x507-pad,600x600,f8f8f8.jpg"
+    "name": "YTDLnis | YouTube Downloader",
+    "dis": "An advanced YouTube downloader for Android with support for many formats.",
+    "img": "https://raw.githubusercontent.com/deniscerri/ytdlnis/main/fastlane/metadata/android/en-US/images/icon.png",
+    "urls": ["https://github.com/deniscerri/ytdlnis"]
   },
   {
-    "title": "Dummy",
-    "url": "https://ih1.redbubble.net/image.1863076614.4181/st,small,507x507-pad,600x600,f8f8f8.jpg",
-    "img": "https://ih1.redbubble.net/image.1863076614.4181/st,small,507x507-pad,600x600,f8f8f8.jpg"
+    "name": "ONCALL | SIP",
+    "dis": "Professional SIP softphone for VoIP calling.",
+    "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQX4wFVYro9SrEykH1Ri_4NqERu3qPwRCQPlzC7ABUgoA&s=10",
+    "urls": ["market://details?id=com.portsip.oncall"]
+  },
+  { "name": "Tools & Utilities" },
+  {
+    "name": "Tile Shortcuts",
+    "dis": "Create custom quick settings tiles for your favorite apps.",
+    "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbrpFsmsWVIQiSYdSuQ_3Kkhr4xWOnrc-heZBF7ADBxg&s=10",
+    "urls": ["market://details?id=com.tombayley.tileshortcuts"]
   },
   {
-    "title": "YTDLnis | YouTube Downloader",
-    "url": "https://github.com/deniscerri/ytdlnis",
-    "img": "https://raw.githubusercontent.com/deniscerri/ytdlnis/main/fastlane/metadata/android/en-US/images/icon.png"
+    "name": "IMEI Buddy",
+    "dis": "Check IMEI information and network status easily.",
+    "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-38lXJcehCvn177kCuz0INfEdwLc0k3_bgpcaDA7xtg&s",
+    "urls": ["market://details?id=io.github.chayanforyou.neir"]
   },
   {
-    "title": "ONCALL | SIP",
-    "url": "https://play.google.com/store/apps/details?id=com.portsip.oncall",
-    "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQX4wFVYro9SrEykH1Ri_4NqERu3qPwRCQPlzC7ABUgoA&s=10"
-  },
-  {
-    "title": "Tile Shortcuts",
-    "url": "https://play.google.com/store/apps/details?id=com.tombayley.tileshortcuts",
-    "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbrpFsmsWVIQiSYdSuQ_3Kkhr4xWOnrc-heZBF7ADBxg&s=10"
-  },
-  {
-    "title": "IMEI Buddy",
-    "url": "https://play.google.com/store/apps/details?id=io.github.chayanforyou.neir",
-    "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-38lXJcehCvn177kCuz0INfEdwLc0k3_bgpcaDA7xtg&s"
-  },
-  {
-    "title": "Google's Find Hub",
-    "url": "https://play.google.com/store/apps/details?id=com.google.android.apps.adm",
-    "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvhJJiqg-wO0EwY4HmTZjEua130L6eGN-nHHCG2NDrpg&s"
-  },
-  {
-    "title": "Dummy",
-    "url": "https://ih1.redbubble.net/image.1863076614.4181/st,small,507x507-pad,600x600,f8f8f8.jpg",
-    "img": "https://ih1.redbubble.net/image.1863076614.4181/st,small,507x507-pad,600x600,f8f8f8.jpg"
+    "name": "Google's Find Hub",
+    "dis": "Locate and secure your lost Android devices.",
+    "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvhJJiqg-wO0EwY4HmTZjEua130L6eGN-nHHCG2NDrpg&s",
+    "urls": ["market://details?id=com.google.android.apps.adm"]
   }
 ]
