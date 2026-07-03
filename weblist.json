@@ -33,5 +33,30 @@
     "name": "Local Weblist",
     "url": "https://3.s33.pages.dev",
     "img": "https://samy.pro.bd/p/svg/local.svg"
+  },
+{
+    "name": "Weblist 2",
+    "url": "https://samy.nav.bd/2",
+    "img": "https://samy.pro.bd/p/svg/weblist2.svg"
+  },
+  {
+    "name": "APP",
+    "url": "https://samy.nav.bd/app",
+    "img": "https://samy.pro.bd/p/svg/app.svg"
+  },
+  {
+    "name": "IMG",
+    "url": "https://samy.nav.bd/img",
+    "img": "https://samy.pro.bd/p/svg/img.svg"
+  },
+  {
+    "name": "TBCPL",
+    "url": "https://tbcpl.lol/",
+    "img": "https://samy.nav.bd/img/22.png"
+  },
+  {
+    "name": "Local Weblist",
+    "url": "https://3.s33.pages.dev",
+    "img": "https://samy.pro.bd/p/svg/local.svg"
   }
 ]
