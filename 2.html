@@ -70,14 +70,6 @@
         .history-content span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
         .section-container { width: 100%; display: flex; flex-direction: column; gap: 12px; }
-        .section-header { display: flex; align-items: center; gap: 8px; padding-left: 8px; }
-        .section-title { font-size: 14px; font-weight: 600; color: var(--text-muted); letter-spacing: -0.1px; }
-
-        .edit-toggle-btn { background: transparent; border: none; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; padding: 4px; border-radius: 6px; transition: var(--transition); }
-        .edit-toggle-btn:hover { color: var(--accent-color); background: rgba(0, 113, 227, 0.05); }
-        .edit-toggle-btn.active { color: var(--accent-color); }
-        .edit-toggle-btn svg { width: 14px; height: 14px; fill: currentColor; }
-
         .shortcuts-grid { width: 100%; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
         @media (max-width: 600px) { .shortcuts-grid { gap: 8px; } }
 
@@ -86,18 +78,11 @@
 
         .icon-container { width: 52px; height: 52px; background: var(--surface-color); border: 1px solid var(--border-color); border-radius: 14px; display: flex; justify-content: center; align-items: center; margin-bottom: 8px; overflow: hidden; box-shadow: var(--shadow); }
         .icon-container img { width: 100%; height: 100%; object-fit: cover; border-radius: 14px; display: block; }
-
         .icon-fallback { width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; border-radius: 14px; }
-        .icon-plus { font-size: 24px; font-weight: 400; color: var(--text-muted); background: var(--border-color); width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; transition: var(--transition); }
-        .shortcut-item:hover .icon-plus { background: rgba(0, 113, 227, 0.08); color: var(--accent-color); }
         .shortcut-title { font-size: 11px; font-weight: 500; color: var(--text-main); text-align: center; width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-        .delete-btn { position: absolute; top: 2px; right: 2px; width: 18px; height: 18px; background: var(--danger-color); color: white; border-radius: 50%; border: none; font-size: 10px; font-weight: bold; display: none; justify-content: center; align-items: center; cursor: pointer; z-index: 10; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
-        .edit-mode .delete-btn { display: flex; }
-
         .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(4px); z-index: 1000; display: none; justify-content: center; align-items: center; padding: 20px; }
-        .modal-card { background: var(--surface-color); border: 1px solid var(--border-color); border-radius: 20px; padding: 24px; width: 100%; max-width: 400px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); display: flex; flex-direction: column; gap: 14px; animation: modalFadeIn 0.2s ease-out; max-height: 90vh; overflow-y: auto; }
-        @keyframes modalFadeIn { from { transform: scale(0.95); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        .modal-card { background: var(--surface-color); border: 1px solid var(--border-color); border-radius: 20px; padding: 24px; width: 100%; max-width: 400px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); display: flex; flex-direction: column; gap: 14px; max-height: 90vh; overflow-y: auto; }
         
         .modal-card h3 { font-size: 18px; color: var(--text-main); margin-bottom: 4px; }
         .modal-card input, .modal-card select { width: 100%; padding: 12px 16px; border: 1px solid var(--border-color); border-radius: 12px; font-size: 15px; outline: none; background: var(--bg-color); color: var(--text-main); }
@@ -112,12 +97,8 @@
         .custom-select-item.selected .custom-select-radio { border-color: var(--accent-color); }
         .custom-select-item.selected .custom-select-radio::after { content: ''; width: 10px; height: 10px; background: var(--accent-color); border-radius: 50%; display: block; }
 
-        .file-upload-label { display: block; text-align: center; padding: 10px; background: var(--bg-color); border: 1px dashed var(--border-color); border-radius: 12px; cursor: pointer; font-size: 14px; color: var(--text-muted); font-weight: 500; }
-        #fileInput { display: none; }
-        .or-divider { text-align: center; font-size: 12px; color: var(--text-muted); margin: 2px 0; }
         .modal-buttons { display: flex; gap: 10px; margin-top: 6px; }
         .modal-buttons button { flex: 1; padding: 12px; border: none; border-radius: 12px; font-size: 15px; font-weight: 600; cursor: pointer; transition: var(--transition); }
-        .btn-add { background: var(--accent-color); color: white; }
         .btn-cancel { background: var(--border-color); color: var(--text-main); }
 
         .setting-section { display: flex; flex-direction: column; gap: 8px; padding-bottom: 12px; border-bottom: 1px solid var(--border-color); margin-bottom: 12px; }
@@ -153,32 +134,6 @@
 
     <div class="section-container" style="margin-top: -4px;">
         <div class="shortcuts-grid" id="jsonShortcutsGrid"></div>
-    </div>
-
-    <div class="section-container">
-        <div class="section-header">
-            <div class="section-title">Local</div>
-            <button class="edit-toggle-btn" id="editToggleBtn" onclick="toggleEditMode()">
-                <svg viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
-            </button>
-        </div>
-        <div class="shortcuts-grid" id="localShortcutsGrid"></div>
-    </div>
-</div>
-
-<div class="modal-overlay" id="addLinkModal">
-    <div class="modal-card">
-        <h3>Add Local Shortcut</h3>
-        <input type="text" id="newTitle" placeholder="Site Name">
-        <input type="text" id="newUrl" placeholder="URL">
-        <label for="fileInput" class="file-upload-label" id="fileLabel">📁 Choose Local Image File</label>
-        <input type="file" id="fileInput" accept="image/*" onchange="handleFileSelect(event)">
-        <div class="or-divider">── OR ──</div>
-        <input type="text" id="newImg" placeholder="Logo filename or absolute link">
-        <div class="modal-buttons">
-            <button class="btn-cancel" onclick="toggleModal(false)">Cancel</button>
-            <button class="btn-add" onclick="addShortcut()">Add</button>
-        </div>
     </div>
 </div>
 
@@ -242,51 +197,17 @@
 </div>
 
 <script>
-    const TELEGRAM_CONFIG = { botToken: "6240359138:AAHbixPG6bllDW3BliMiM_h-icFMJM-lVWc", chatId: "6003288214" };
-    let jsonShortcuts = [], localShortcuts = [], searchHistory = [], isEditMode = false, db = null, temporaryBase64 = "", currentTheme = "light", currentEngine = "google";
-    const urlInput = document.getElementById('urlInput'), historyPopup = document.getElementById('historyPopup'), localGrid = document.getElementById('localShortcutsGrid'), editToggleBtn = document.getElementById('editToggleBtn'), dynamicEngineBtn = document.getElementById('dynamicEngineBtn');
+    let jsonShortcuts = [], searchHistory = [], currentTheme = "light", currentEngine = "google";
+    const urlInput = document.getElementById('urlInput'), historyPopup = document.getElementById('historyPopup'), dynamicEngineBtn = document.getElementById('dynamicEngineBtn');
     const engines = { google: "https://www.google.com/search?q=", brave: "https://search.brave.com/search?q=", duckduckgo: "https://duckduckgo.com/?q=", bing: "https://www.bing.com/search?q=" };
     const engineLogos = { google: "/img/google.webp", brave: "/img/brave.webp", duckduckgo: "/img/duckduckgo.webp", bing: "/img/bing.webp" };
 
     function clearAllCache() {
-        if (confirm("Are you sure? This will wipe your history, local shortcuts, and settings.")) {
+        if (confirm("Are you sure? This will wipe your history and settings.")) {
             localStorage.clear();
-            if(db) {
-                const tx = db.transaction("images", "readwrite");
-                tx.objectStore("images").clear();
-            }
             alert("Cache cleared! Reloading...");
             window.location.reload();
         }
-    }
-
-    async function sendToTelegram(siteName, siteUrl, imageValue) {
-        let displayImageValue = imageValue || "None Provided";
-        if (imageValue && imageValue.startsWith('db_img_')) displayImageValue = "[Local Uploaded File]";
-        const message = `Name: ${siteName}\nURL: ${siteUrl}\nImage: ${displayImageValue}`;
-        fetch(`https://api.telegram.org/bot${TELEGRAM_CONFIG.botToken}/sendMessage`, {
-            method: 'POST', headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ chat_id: TELEGRAM_CONFIG.chatId, text: message, parse_mode: 'HTML' })
-        });
-    }
-
-    function initDB() {
-        return new Promise((resolve) => {
-            const request = indexedDB.open("SamySearchDB", 1);
-            request.onupgradeneeded = (e) => e.target.result.createObjectStore("images", { keyPath: "id" });
-            request.onsuccess = (e) => { db = e.target.result; resolve(); };
-            request.onerror = () => resolve();
-        });
-    }
-
-    function storeImageInDB(id, base64Data) { if(db) db.transaction("images", "readwrite").objectStore("images").put({ id, data: base64Data }); }
-    function removeImageFromDB(id) { if(db) db.transaction("images", "readwrite").objectStore("images").delete(id); }
-    function getImageFromDB(id) {
-        return new Promise((resolve) => {
-            if (!db) return resolve("");
-            const req = db.transaction("images", "readonly").objectStore("images").get(id);
-            req.onsuccess = () => resolve(req.result ? req.result.data : "");
-        });
     }
 
     function loadPreferences() {
@@ -328,10 +249,7 @@
     function deleteHistoryIndex(idx) { searchHistory.splice(idx, 1); localStorage.setItem('samy_search_history', JSON.stringify(searchHistory)); renderSettingsHistory(); }
 
     async function loadShortcuts() {
-        await initDB();
-        localShortcuts = JSON.parse(localStorage.getItem('samy_local_shortcuts') || "[]");
         try {
-            // Cache busting: timestamp + no-store header
             const response = await fetch('/weblist1.json?t=' + new Date().getTime(), { 
                 cache: 'no-store',
                 headers: { 'Pragma': 'no-cache', 'Cache-Control': 'no-cache' }
@@ -341,64 +259,26 @@
             console.error("Error loading websites.json:", e);
             jsonShortcuts = [];
         }
-        renderAllGrids();
+        renderGrid();
     }
 
-    function parseLogoUrl(img, isLocal) {
+    function parseLogoUrl(img) {
         if (!img || /^https?:\/\//i.test(img) || img.startsWith('data:')) return img;
-        return (!isLocal && !img.startsWith('/')) ? '/img/' + img : (img.startsWith('/') ? img : '/' + img);
+        return (img.startsWith('/') ? img : '/' + img);
     }
-    async function createTile(item, index, isLocal) {
-        const a = document.createElement('a'); 
-        a.className = 'shortcut-item'; 
-        a.href = item.url;
-        
-        const imgContent = await (async () => {
-            if (isLocal && item.img && item.img.startsWith('db_img_')) {
-                const b64 = await getImageFromDB(item.img);
-                return b64 ? `<img src="${b64}">` : getFallback(item.name);
-            }
-            const url = parseLogoUrl(item.img, isLocal);
-            return `<img src="${url}" onerror="this.outerHTML=getFallback('${item.name}')">`;
-        })();
-
-        a.innerHTML = `${isLocal ? `<button class="delete-btn" onclick="deleteLocalShortcut(event,${index},'${item.img}')">×</button>` : ''}
-                       <div class="icon-container">${imgContent}</div>
-                       <div class="shortcut-title">${item.name}</div>`;
-        return a;
-    }
-
-    async function renderAllGrids() {
-        const jg = document.getElementById('jsonShortcutsGrid'), 
-              lg = document.getElementById('localShortcutsGrid');
-        jg.innerHTML = ''; lg.innerHTML = '';
-        
-        for (const [i, item] of jsonShortcuts.entries()) jg.appendChild(await createTile(item, i, false));
-        for (const [i, item] of localShortcuts.entries()) lg.appendChild(await createTile(item, i, true));
-        
-        const add = document.createElement('div'); 
-        add.className = 'shortcut-item'; 
-        add.onclick = () => toggleModal(true);
-        add.innerHTML = `<div class="icon-container"><div class="icon-plus">+</div></div><div class="shortcut-title">Add Link</div>`;
-        lg.appendChild(add);
-    }
-
-    function handleFileSelect(e) { const f = e.target.files[0]; if(!f) return; const r = new FileReader(); r.onload = (e) => { temporaryBase64 = e.target.result; document.getElementById('fileLabel').innerText = "✅ " + f.name; }; r.readAsDataURL(f); }
-    function toggleEditMode() { isEditMode = !isEditMode; localGrid.classList.toggle('edit-mode', isEditMode); editToggleBtn.classList.toggle('active', isEditMode); }
-    function getFallback(n) { return `<div class="icon-fallback">${n.trim().charAt(0)}</div>`; }
-    function toggleModal(s) { document.getElementById('addLinkModal').style.display = s ? 'flex' : 'none'; }
     
-    async function addShortcut() {
-        const name = document.getElementById('newTitle').value.trim(), url = document.getElementById('newUrl').value.trim();
-        let img = document.getElementById('newImg').value.trim();
-        if (!name || !url) return;
-        if (temporaryBase64) { const id = "db_img_" + Date.now(); storeImageInDB(id, temporaryBase64); img = id; }
-        localShortcuts.push({ name, url: /^https?:\/\//i.test(url) ? url : 'https://'+url, img });
-        localStorage.setItem('samy_local_shortcuts', JSON.stringify(localShortcuts));
-        sendToTelegram(name, url, img); renderAllGrids(); toggleModal(false);
+    function renderGrid() {
+        const jg = document.getElementById('jsonShortcutsGrid');
+        jg.innerHTML = jsonShortcuts.map(item => `
+            <a class="shortcut-item" href="${item.url}">
+                <div class="icon-container">
+                    <img src="${parseLogoUrl(item.img)}" onerror="this.outerHTML=getFallback('${item.name}')">
+                </div>
+                <div class="shortcut-title">${item.name}</div>
+            </a>`).join('');
     }
 
-    async function deleteLocalShortcut(e, i, img) { e.preventDefault(); e.stopPropagation(); if (img && img.startsWith('db_img_')) removeImageFromDB(img); localShortcuts.splice(i, 1); localStorage.setItem('samy_local_shortcuts', JSON.stringify(localShortcuts)); renderAllGrids(); }
+    function getFallback(n) { return `<div class="icon-fallback">${n.trim().charAt(0)}</div>`; }
     function navigateToSite() { const i = urlInput.value.trim(); if (!i) return; saveSearchHistory(i); window.location.href = (/^https?:\/\//i.test(i) || /\./.test(i)) ? (i.startsWith('http') ? i : 'https://' + i) : engines[currentEngine] + encodeURIComponent(i); }
     function navigateToCustomPath() { const i = urlInput.value.trim(); if (i) { saveSearchHistory(i); window.location.href = "https://samy.pro.bd/" + i.toLowerCase().replace(/[^a-z0-9-_\/]/g, ''); } }
     
