@@ -121,7 +121,7 @@
   {
     "name": "Orion Store",
     "dis": "A transparent app store built around public releases, inspectable metadata, and automation you can actually follow. Especially it is very helpful for finding mod APK.",
-    "img": "https://raw.githubusercontent.com/RookieEnough/Orion-Store/main/assets/orion_logo_512.png",
+    "img": "https://samy.nav.bd/img/18.png",
     "urls": [
       "https://github.com/RookieEnough/Orion-Store/releases"
     ]
@@ -136,10 +136,7 @@
     ]
   },
   {
-    "name": "Mod APK",
-    "dis": "undefined",
-    "img": "undefined",
-    "urls": []
+    "name": "Mod APK"
   },
   {
     "name": "CamScanner",
