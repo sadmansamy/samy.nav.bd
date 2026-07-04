@@ -151,5 +151,15 @@
     "urls": [
       "https://www.rockmods.net/search?q=camscanner"
     ]
+  },
+  {
+    "name": "F-Droid",
+    "dis": "F-Droid is the app distribution ecosystem for Android where your user freedom comes first. Discover our app store, explore the world of free and open source (FOSS) apps.",
+    "img": "https://avatars.githubusercontent.com/u/8239603?s=200&v=4",
+    "urls": [
+      "https://f-droid.org/F-Droid.apk",
+      "https://f-droid.org/"
+    ]
   }
 ]
+
