@@ -6,7 +6,7 @@
     <title>JSON Editor Pro</title>
     <style>
         body { font-family: sans-serif; padding: 15px; background: #f4f4f9; }
-        .box { background: #fff; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        /* Removed .box styling to make items sit directly on the background */
         input, textarea { width: 100%; padding: 10px; margin-bottom: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
         button { padding: 12px; cursor: pointer; border: none; border-radius: 4px; width: 100%; margin-top: 5px; color: white; font-weight: bold; }
         .item { background: #fff; padding: 10px; margin-bottom: 8px; border-radius: 5px; display: flex; justify-content: space-between; align-items: center; border-left: 4px solid #007bff; }
@@ -15,35 +15,32 @@
         .btn-edit { background: orange; width: auto; padding: 5px; }
         .btn-del { background: red; width: auto; padding: 5px; }
         .btn-danger { background: #dc3545; margin-top: 30px; }
+        h3 { margin-top: 20px; }
     </style>
 </head>
 <body>
 
-    <div class="box">
-        <h3>Import Existing JSON</h3>
-        <textarea id="importArea" rows="3" placeholder="Paste your existing JSON here..."></textarea>
-        <button onclick="importJSON()" style="background: #28a745;">Load to List</button>
-    </div>
+    <h3>Import Existing JSON</h3>
+    <textarea id="importArea" rows="3" placeholder="Paste your existing JSON here..."></textarea>
+    <button onclick="importJSON()" style="background: #28a745;">Load to List</button>
 
-    <div class="box">
-        <h3>Editor</h3>
-        <input type="hidden" id="editIndex" value="-1">
-        <input type="text" id="name" placeholder="Name">
-        <input type="text" id="dis" placeholder="Description">
-        <input type="text" id="img" placeholder="Image URL">
-        <div id="url-container">
-            <input type="text" class="url-input" placeholder="URL 1">
-            <input type="text" class="url-input" placeholder="URL 2">
-            <input type="text" class="url-input" placeholder="URL 3">
-        </div>
-        <button onclick="addUrlField()" style="background: #6c757d;">+ Add another URL</button>
-        <button id="saveBtn" onclick="saveItem()" class="btn-add">Add to List</button>
+    <h3>Editor</h3>
+    <input type="hidden" id="editIndex" value="-1">
+    <input type="text" id="name" placeholder="Name">
+    <input type="text" id="dis" placeholder="Description">
+    <input type="text" id="img" placeholder="Image URL">
+    <div id="url-container">
+        <input type="text" class="url-input" placeholder="URL 1">
+        <input type="text" class="url-input" placeholder="URL 2">
+        <input type="text" class="url-input" placeholder="URL 3">
     </div>
+    <button onclick="addUrlField()" style="background: #6c757d;">+ Add another URL</button>
+    <button id="saveBtn" onclick="saveItem()" class="btn-add">Add to List</button>
 
     <h3>App List</h3>
     <div id="app-list"></div>
 
-    <button onclick="generateJSON()" style="background: #333;">Generate JSON Script</button>
+    <button onclick="generateJSON()" style="background: #333; margin-top: 20px;">Generate JSON Script</button>
     <button onclick="copyToClipboard()" style="background: #666;">Copy to Clipboard</button>
     <pre id="output"></pre>
 
