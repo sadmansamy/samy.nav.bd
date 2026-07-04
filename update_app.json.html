@@ -3,88 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JSON Editor Pro</title>
+    <title>Modern JSON Manager</title>
     <style>
-        body { font-family: sans-serif; padding: 15px; background: #f4f4f9; }
-        input, textarea { width: 100%; padding: 10px; margin-bottom: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
-        button { padding: 12px; cursor: pointer; border: none; border-radius: 4px; width: 100%; margin-top: 5px; color: white; font-weight: bold; }
-        .item { background: #fff; padding: 10px; margin-bottom: 8px; border-radius: 5px; display: flex; justify-content: space-between; align-items: center; border-left: 4px solid #007bff; }
-        pre { background: #333; color: #0f0; padding: 10px; overflow-x: auto; border-radius: 4px; font-size: 12px; }
-        .btn-add { background: #007bff; }
-        .btn-edit { background: orange; width: auto; padding: 5px; }
-        .btn-del { background: red; width: auto; padding: 5px; }
-        .btn-danger { background: #dc3545; margin-top: 30px; }
+        :root { --primary: #4f46e5; --danger: #ef4444; --bg: #f8fafc; --card: #ffffff; }
+        body { font-family: 'Segoe UI', sans-serif; padding: 20px; background-color: var(--bg); max-width: 600px; margin: auto; }
+        h3 { color: #1e293b; margin-top: 25px; }
+        .card { background: var(--card); padding: 20px; border-radius: 16px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        input, textarea { width: 100%; padding: 12px; margin-bottom: 12px; border: 1px solid #e2e8f0; border-radius: 10px; box-sizing: border-box; font-size: 15px; }
+        button { padding: 12px; cursor: pointer; border: none; border-radius: 10px; width: 100%; color: white; font-weight: 600; transition: transform 0.1s; }
+        button:active { transform: scale(0.98); }
+        .item { background: var(--card); padding: 15px; margin-bottom: 10px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        pre { background: #1e293b; color: #38bdf8; padding: 15px; border-radius: 12px; overflow-x: auto; font-size: 13px; }
+        .btn-primary { background: var(--primary); }
+        .btn-edit { background: #f59e0b; width: auto; padding: 8px 12px; }
+        .btn-del { background: var(--danger); width: auto; padding: 8px 12px; }
+        .btn-danger { background: var(--danger); margin-top: 30px; }
     </style>
 </head>
 <body>
 
-    <h3>Import Existing JSON</h3>
-    <textarea id="importArea" rows="3" placeholder="Paste your existing JSON here..."></textarea>
-    <button onclick="importJSON()" style="background: #28a745;">Load to List</button>
-
-    <h3>Editor</h3>
-    <input type="hidden" id="editIndex" value="-1">
-    <input type="text" id="name" placeholder="Name">
-    <input type="text" id="dis" placeholder="Description">
-    <input type="text" id="img" placeholder="Image URL">
-    <div id="url-container">
-        <input type="text" class="url-input" placeholder="URL 1">
-        <input type="text" class="url-input" placeholder="URL 2">
-        <input type="text" class="url-input" placeholder="URL 3">
+    <div class="card">
+        <h3>Import Existing JSON</h3>
+        <textarea id="importArea" rows="3" placeholder="Paste JSON here..."></textarea>
+        <button onclick="importJSON()" class="btn-primary">Load to List</button>
     </div>
-    <button onclick="addUrlField()" style="background: #6c757d;">+ Add another URL</button>
-    <button id="saveBtn" onclick="saveItem()" class="btn-add">Add to List</button>
+
+    <div class="card">
+        <h3>Editor</h3>
+        <input type="hidden" id="editIndex" value="-1">
+        <input type="text" id="name" placeholder="App Name">
+        <input type="text" id="dis" placeholder="Description">
+        <input type="text" id="img" placeholder="Image URL">
+        <div id="url-container">
+            <input type="text" class="url-input" placeholder="URL 1">
+            <input type="text" class="url-input" placeholder="URL 2">
+            <input type="text" class="url-input" placeholder="URL 3">
+        </div>
+        <button onclick="addUrlField()" style="background: #64748b;">+ Add URL</button>
+        <button id="saveBtn" onclick="saveItem()" class="btn-primary" style="margin-top:10px;">Add to List</button>
+    </div>
 
     <h3>App List</h3>
     <div id="app-list"></div>
 
-    <button onclick="generateJSON()" style="background: #333; margin-top: 20px;">Generate JSON Script</button>
-    <button onclick="copyToClipboard()" style="background: #666;">Copy to Clipboard</button>
-    <pre id="output"></pre>
+    <button onclick="generateJSON()" class="btn-primary" style="margin-top: 20px;">Generate JSON Script</button>
+    <button onclick="copyToClipboard()" style="background: #475569; margin-top: 10px;">Copy to Clipboard</button>
+    <pre id="output">JSON will appear here...</pre>
 
     <button onclick="showDeleteModal()" class="btn-danger">Delete All</button>
 
-    <div id="deleteModal" style="display:none; position:fixed; top:20%; left:5%; width:90%; background:white; padding:20px; border:1px solid #ccc; border-radius:8px; box-shadow:0 0 10px rgba(0,0,0,0.3); z-index:100;">
-        <p>Type <b>DELETE</b> to delete all:</p>
-        <div style="display:flex; gap:10px; align-items:center; margin-bottom:10px;">
-            <input type="text" id="deleteInput" placeholder="Type DELETE here">
-            <button onclick="copyDeleteText()" style="width: auto; background: #6c757d;">📋</button>
+    <div id="deleteModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:100; align-items:center; justify-content:center;">
+        <div class="card" style="width: 80%; max-width: 400px;">
+            <p>Type <b>DELETE</b> to delete all:</p>
+            <div style="display:flex; align-items:center; gap:8px; margin-bottom:15px;">
+                <input type="text" id="deleteInput" placeholder="Type DELETE here" style="margin:0;">
+                <button onclick="copyDeleteText()" style="width: 50px; background: #64748b; margin:0;">📋</button>
+            </div>
+            <button onclick="confirmDelete()" class="btn-danger">Delete All</button>
+            <button onclick="closeModal()" style="background: #94a3b8; margin-top:10px;">Cancel</button>
         </div>
-        <button onclick="confirmDelete()" style="background: #dc3545;">Delete All</button>
-        <button onclick="closeModal()" style="background: #666; margin-top:10px;">Cancel</button>
     </div>
 
     <script>
         let data = JSON.parse(localStorage.getItem('myApps')) || [];
-
-        function importJSON() {
-            try { data = JSON.parse(document.getElementById('importArea').value); render(); } 
-            catch(e) { alert("Invalid JSON format"); }
-        }
-
+        function importJSON() { try { data = JSON.parse(document.getElementById('importArea').value); render(); } catch(e) { alert("Invalid JSON"); } }
         function addUrlField() {
             const input = document.createElement('input');
-            input.type = 'text';
-            input.className = 'url-input';
-            input.placeholder = 'Extra URL';
+            input.type = 'text'; input.className = 'url-input'; input.placeholder = 'Extra URL';
             document.getElementById('url-container').appendChild(input);
         }
-
         function saveItem() {
             const index = document.getElementById('editIndex').value;
             const name = document.getElementById('name').value;
             if(!name) return alert("Name is required!");
-            
-            const urls = Array.from(document.querySelectorAll('.url-input'))
-                              .map(i => i.value).filter(v => v);
-            
+            const urls = Array.from(document.querySelectorAll('.url-input')).map(i => i.value).filter(v => v);
             const item = { name, dis: document.getElementById('dis').value, img: document.getElementById('img').value, urls };
-            if (index == -1) data.push(item);
-            else data[index] = item;
-
+            if (index == -1) data.push(item); else data[index] = item;
             resetForm(); render();
         }
-
         function editItem(index) {
             const item = data[index];
             document.getElementById('editIndex').value = index;
@@ -94,15 +90,13 @@
             document.getElementById('url-container').innerHTML = '';
             item.urls.forEach(url => {
                 const input = document.createElement('input');
-                input.className = 'url-input';
-                input.value = url;
+                input.className = 'url-input'; input.value = url;
                 document.getElementById('url-container').appendChild(input);
             });
             while(document.querySelectorAll('.url-input').length < 3) addUrlField();
             document.getElementById('saveBtn').innerText = "Update Item";
             window.scrollTo(0, 0);
         }
-
         function resetForm() {
             document.getElementById('editIndex').value = -1;
             document.getElementById('name').value = '';
@@ -114,37 +108,28 @@
                 <input type="text" class="url-input" placeholder="URL 3">`;
             document.getElementById('saveBtn').innerText = "Add to List";
         }
-
         function render() {
-            const list = document.getElementById('app-list');
-            list.innerHTML = '';
+            const list = document.getElementById('app-list'); list.innerHTML = '';
             data.forEach((item, index) => {
-                const div = document.createElement('div');
-                div.className = 'item';
-                div.innerHTML = `<strong>${item.name}</strong>
-                    <div>
-                        <button onclick="editItem(${index})" class="btn-edit">Edit</button>
-                        <button onclick="del(${index})" class="btn-del">X</button>
-                    </div>`;
+                const div = document.createElement('div'); div.className = 'item';
+                div.innerHTML = `<strong>${item.name}</strong> <div>
+                    <button onclick="editItem(${index})" class="btn-edit">Edit</button>
+                    <button onclick="del(${index})" class="btn-del">X</button></div>`;
                 list.appendChild(div);
             });
             localStorage.setItem('myApps', JSON.stringify(data));
         }
-
         function del(idx) { if(confirm('Delete this item?')) { data.splice(idx, 1); render(); } }
-
-        function showDeleteModal() { document.getElementById('deleteModal').style.display = 'block'; }
+        function showDeleteModal() { document.getElementById('deleteModal').style.display = 'flex'; }
         function closeModal() { document.getElementById('deleteModal').style.display = 'none'; }
-        function copyDeleteText() { navigator.clipboard.writeText("DELETE").then(() => alert("Copied 'DELETE' to clipboard!")); }
+        function copyDeleteText() { navigator.clipboard.writeText("DELETE"); }
         function confirmDelete() {
             const val = document.getElementById('deleteInput').value;
             if (val === "DELETE") { data = []; localStorage.removeItem('myApps'); render(); closeModal(); document.getElementById('deleteInput').value = ''; }
-            else { alert("Incorrect text! Please type DELETE exactly."); }
+            else { alert("Incorrect text!"); }
         }
-
         function generateJSON() { document.getElementById('output').innerText = JSON.stringify(data, null, 2); }
         function copyToClipboard() { navigator.clipboard.writeText(document.getElementById('output').innerText).then(() => alert("Copied!")); }
-
         render();
     </script>
 </body>
