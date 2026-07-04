@@ -51,7 +51,6 @@
         <button onclick="showDeleteModal()" style="background: var(--danger); width: 100%; padding: 12px; margin-top: 30px; margin-bottom: 30px;">Delete All</button>
     </div>
 
-    <!-- Modals (Import and Delete remain the same) -->
     <div id="importModal" class="modal">
         <div class="card" style="width: 85%; border-radius: 16px;">
             <h3>Import JSON</h3>
@@ -64,21 +63,23 @@
     <div id="deleteModal" class="modal">
         <div class="card" style="width: 85%; border-radius: 16px;">
             <p>Type <b>DELETE</b> to delete all:</p>
-            <input type="text" id="deleteInput" placeholder="Type DELETE here">
+            <div style="display:flex; align-items:center; gap:8px; margin-bottom:15px;">
+                <input type="text" id="deleteInput" placeholder="Type DELETE here">
+                <button onclick="copyDeleteText()" style="width: 50px; background: #64748b;">📋</button>
+            </div>
             <button onclick="confirmDelete()" style="background: var(--danger); width: 100%;">Delete All</button>
         </div>
     </div>
 
     <script>
         let data = JSON.parse(localStorage.getItem('myApps')) || [];
-        function showImportModal() { document.getElementById('importModal').style.display = 'flex'; }
-        function showDeleteModal() { document.getElementById('deleteModal').style.display = 'flex'; }
-        function closeModal(id) { document.getElementById(id).style.display = 'none'; }
-        
+
         function render() {
-            const list = document.getElementById('app-list'); list.innerHTML = '';
+            const list = document.getElementById('app-list');
+            list.innerHTML = '';
             data.forEach((item, index) => {
-                const div = document.createElement('div'); div.className = 'item';
+                const div = document.createElement('div');
+                div.className = 'item';
                 div.innerHTML = `<strong>${item.name}</strong> 
                     <div class="item-btns">
                         <button onclick="move(${index}, -1)" style="background:#64748b;">↑</button>
@@ -91,15 +92,66 @@
             localStorage.setItem('myApps', JSON.stringify(data));
         }
 
-        function move(index, direction) {
-            const newIndex = index + direction;
+        function saveItem() {
+            const index = document.getElementById('editIndex').value;
+            const name = document.getElementById('name').value;
+            if(!name) return alert("App Name is required!");
+            const urls = Array.from(document.querySelectorAll('.url-input')).map(i => i.value).filter(v => v);
+            const item = { name, dis: document.getElementById('dis').value, img: document.getElementById('img').value, urls };
+            if (index == -1) data.push(item); else data[index] = item;
+            resetForm(); render();
+        }
+
+        function editItem(index) {
+            const item = data[index];
+            document.getElementById('editIndex').value = index;
+            document.getElementById('name').value = item.name;
+            document.getElementById('dis').value = item.dis;
+            document.getElementById('img').value = item.img;
+            document.getElementById('url-container').innerHTML = '';
+            item.urls.forEach(url => {
+                const row = document.createElement('div'); row.className = 'url-row';
+                row.innerHTML = `<input type="text" class="url-input" value="${url}">`;
+                document.getElementById('url-container').appendChild(row);
+            });
+            while(document.querySelectorAll('.url-input').length < 3) addUrlField();
+            document.getElementById('saveBtn').innerText = "Update Item";
+            window.scrollTo(0, 0);
+        }
+
+        function resetForm() {
+            document.getElementById('editIndex').value = -1;
+            document.getElementById('name').value = '';
+            document.getElementById('dis').value = '';
+            document.getElementById('img').value = '';
+            document.getElementById('url-container').innerHTML = `<div class="url-row"><input type="text" class="url-input" placeholder="URL 1"></div><div class="url-row"><input type="text" class="url-input" placeholder="URL 2"></div><div class="url-row"><input type="text" class="url-input" placeholder="URL 3"><button onclick="addUrlField()" class="plus-btn">+</button></div>`;
+            document.getElementById('saveBtn').innerText = "Add to List";
+        }
+
+        function addUrlField() {
+            const row = document.createElement('div'); row.className = 'url-row';
+            row.innerHTML = '<input type="text" class="url-input" placeholder="Extra URL">';
+            document.getElementById('url-container').appendChild(row);
+        }
+
+        function move(index, dir) {
+            const newIndex = index + dir;
             if (newIndex >= 0 && newIndex < data.length) {
                 [data[index], data[newIndex]] = [data[newIndex], data[index]];
                 render();
             }
         }
+
+        function del(idx) { if(confirm('Delete this app?')) { data.splice(idx, 1); render(); } }
+        function showImportModal() { document.getElementById('importModal').style.display = 'flex'; }
+        function showDeleteModal() { document.getElementById('deleteModal').style.display = 'flex'; }
+        function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+        function importJSON() { try { data = JSON.parse(document.getElementById('importArea').value); render(); closeModal('importModal'); } catch(e) { alert("Invalid JSON"); } }
+        function confirmDelete() { if (document.getElementById('deleteInput').value === "DELETE") { data = []; localStorage.removeItem('myApps'); render(); closeModal('deleteModal'); document.getElementById('deleteInput').value = ''; } else { alert("Type DELETE correctly"); } }
+        function generateJSON() { document.getElementById('output').innerText = JSON.stringify(data, null, 2); }
+        function copyToClipboard() { navigator.clipboard.writeText(document.getElementById('output').innerText).then(() => alert("Copied to clipboard!")); }
+        function copyDeleteText() { navigator.clipboard.writeText("DELETE"); }
         
-        // ... include previous logic for addUrlField, saveItem, resetForm, editItem, del, confirmDelete, generateJSON, copyToClipboard ...
         render();
     </script>
 </body>
