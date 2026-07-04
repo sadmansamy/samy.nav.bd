@@ -6,20 +6,27 @@
     <title>JSON Editor Pro</title>
     <style>
         body { font-family: sans-serif; padding: 15px; background: #f4f4f9; }
-        .input-group { background: #fff; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px; }
-        input { width: 100%; padding: 10px; margin-bottom: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
-        button { padding: 10px; cursor: pointer; background: #007bff; color: white; border: none; border-radius: 4px; width: 100%; margin-top: 5px; }
+        .box { background: #fff; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        input, textarea { width: 100%; padding: 10px; margin-bottom: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        button { padding: 12px; cursor: pointer; border: none; border-radius: 4px; width: 100%; margin-top: 5px; color: white; font-weight: bold; }
         .item { background: #fff; padding: 10px; margin-bottom: 8px; border-radius: 5px; display: flex; justify-content: space-between; align-items: center; border-left: 4px solid #007bff; }
         pre { background: #333; color: #0f0; padding: 10px; overflow-x: auto; border-radius: 4px; font-size: 12px; }
-        .danger { background: #dc3545; color: white; margin-bottom: 20px; }
+        .btn-add { background: #007bff; }
+        .btn-edit { background: orange; width: auto; padding: 5px; }
+        .btn-del { background: red; width: auto; padding: 5px; }
+        .btn-danger { background: #dc3545; margin-top: 30px; }
     </style>
 </head>
 <body>
 
-    <button onclick="clearAll()" class="danger">Clear All Data</button>
+    <div class="box">
+        <h3>Import Existing JSON</h3>
+        <textarea id="importArea" rows="3" placeholder="Paste your existing JSON here..."></textarea>
+        <button onclick="importJSON()" style="background: #28a745;">Load to List</button>
+    </div>
 
-    <h3>Editor</h3>
-    <div class="input-group">
+    <div class="box">
+        <h3>Editor</h3>
         <input type="hidden" id="editIndex" value="-1">
         <input type="text" id="name" placeholder="Name">
         <input type="text" id="dis" placeholder="Description">
@@ -28,31 +35,26 @@
             <input type="text" class="url-input" placeholder="URL 1">
             <input type="text" class="url-input" placeholder="URL 2">
             <input type="text" class="url-input" placeholder="URL 3">
-            <input type="text" class="url-input" placeholder="URL 4">
         </div>
         <button onclick="addUrlField()" style="background: #6c757d;">+ Add another URL</button>
-        <button id="saveBtn" onclick="saveItem()" style="background: #28a745; font-weight: bold;">Add to List</button>
+        <button id="saveBtn" onclick="saveItem()" class="btn-add">Add to List</button>
     </div>
 
     <h3>App List</h3>
     <div id="app-list"></div>
 
-    <button onclick="generateJSON()" style="background: #333; margin-top: 20px;">Generate JSON Script</button>
+    <button onclick="generateJSON()" style="background: #333;">Generate JSON Script</button>
     <button onclick="copyToClipboard()" style="background: #666;">Copy to Clipboard</button>
     <pre id="output"></pre>
+
+    <button onclick="clearAll()" class="btn-danger">Clear All Data</button>
 
     <script>
         let data = JSON.parse(localStorage.getItem('myApps')) || [];
 
-        function clearAll() {
-            const confirmation = prompt("Warning: This will delete ALL data. Type 'DELETE' to confirm:");
-            if (confirmation === 'DELETE') {
-                data = [];
-                localStorage.removeItem('myApps');
-                render();
-            } else if (confirmation !== null) {
-                alert("Confirmation failed. Data was not deleted.");
-            }
+        function importJSON() {
+            try { data = JSON.parse(document.getElementById('importArea').value); render(); } 
+            catch(e) { alert("Invalid JSON format"); }
         }
 
         function addUrlField() {
@@ -72,12 +74,10 @@
                               .map(i => i.value).filter(v => v);
             
             const item = { name, dis: document.getElementById('dis').value, img: document.getElementById('img').value, urls };
-
             if (index == -1) data.push(item);
             else data[index] = item;
 
-            resetForm();
-            render();
+            resetForm(); render();
         }
 
         function editItem(index) {
@@ -86,18 +86,16 @@
             document.getElementById('name').value = item.name;
             document.getElementById('dis').value = item.dis;
             document.getElementById('img').value = item.img;
-            
             document.getElementById('url-container').innerHTML = '';
-            item.urls.forEach((url) => {
+            item.urls.forEach(url => {
                 const input = document.createElement('input');
                 input.className = 'url-input';
                 input.value = url;
                 document.getElementById('url-container').appendChild(input);
             });
-            while(document.querySelectorAll('.url-input').length < 4) addUrlField();
-            
+            while(document.querySelectorAll('.url-input').length < 3) addUrlField();
             document.getElementById('saveBtn').innerText = "Update Item";
-            window.scrollTo(0, 0); // Scroll to top to see form
+            window.scrollTo(0, 0);
         }
 
         function resetForm() {
@@ -108,8 +106,7 @@
             document.getElementById('url-container').innerHTML = `
                 <input type="text" class="url-input" placeholder="URL 1">
                 <input type="text" class="url-input" placeholder="URL 2">
-                <input type="text" class="url-input" placeholder="URL 3">
-                <input type="text" class="url-input" placeholder="URL 4">`;
+                <input type="text" class="url-input" placeholder="URL 3">`;
             document.getElementById('saveBtn').innerText = "Add to List";
         }
 
@@ -121,8 +118,8 @@
                 div.className = 'item';
                 div.innerHTML = `<strong>${item.name}</strong>
                     <div>
-                        <button onclick="editItem(${index})" style="width: auto; padding: 5px; background: orange;">Edit</button>
-                        <button onclick="del(${index})" style="width: auto; padding: 5px; background: red;">X</button>
+                        <button onclick="editItem(${index})" class="btn-edit">Edit</button>
+                        <button onclick="del(${index})" class="btn-del">X</button>
                     </div>`;
                 list.appendChild(div);
             });
@@ -130,6 +127,10 @@
         }
 
         function del(idx) { if(confirm('Delete this item?')) { data.splice(idx, 1); render(); } }
+        function clearAll() {
+            const confirmation = prompt("Warning: This will delete ALL data. Type 'DELETE' to confirm:");
+            if (confirmation === 'DELETE') { data = []; localStorage.removeItem('myApps'); render(); }
+        }
         function generateJSON() { document.getElementById('output').innerText = JSON.stringify(data, null, 2); }
         function copyToClipboard() { navigator.clipboard.writeText(document.getElementById('output').innerText).then(() => alert("Copied!")); }
 
