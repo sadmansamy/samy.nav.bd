@@ -11,9 +11,12 @@
         button { padding: 10px; cursor: pointer; background: #007bff; color: white; border: none; border-radius: 4px; width: 100%; margin-top: 5px; }
         .item { background: #fff; padding: 10px; margin-bottom: 8px; border-radius: 5px; display: flex; justify-content: space-between; align-items: center; border-left: 4px solid #007bff; }
         pre { background: #333; color: #0f0; padding: 10px; overflow-x: auto; border-radius: 4px; font-size: 12px; }
+        .danger { background: #dc3545; color: white; margin-bottom: 20px; }
     </style>
 </head>
 <body>
+
+    <button onclick="clearAll()" class="danger">Clear All Data</button>
 
     <h3>Editor</h3>
     <div class="input-group">
@@ -41,6 +44,17 @@
     <script>
         let data = JSON.parse(localStorage.getItem('myApps')) || [];
 
+        function clearAll() {
+            const confirmation = prompt("Warning: This will delete ALL data. Type 'DELETE' to confirm:");
+            if (confirmation === 'DELETE') {
+                data = [];
+                localStorage.removeItem('myApps');
+                render();
+            } else if (confirmation !== null) {
+                alert("Confirmation failed. Data was not deleted.");
+            }
+        }
+
         function addUrlField() {
             const input = document.createElement('input');
             input.type = 'text';
@@ -52,7 +66,7 @@
         function saveItem() {
             const index = document.getElementById('editIndex').value;
             const name = document.getElementById('name').value;
-            if(!name) return;
+            if(!name) return alert("Name is required!");
             
             const urls = Array.from(document.querySelectorAll('.url-input'))
                               .map(i => i.value).filter(v => v);
@@ -73,18 +87,17 @@
             document.getElementById('dis').value = item.dis;
             document.getElementById('img').value = item.img;
             
-            // Handle URLs
             document.getElementById('url-container').innerHTML = '';
-            item.urls.forEach((url, i) => {
+            item.urls.forEach((url) => {
                 const input = document.createElement('input');
                 input.className = 'url-input';
                 input.value = url;
                 document.getElementById('url-container').appendChild(input);
             });
-            // Ensure at least 4 slots
             while(document.querySelectorAll('.url-input').length < 4) addUrlField();
             
             document.getElementById('saveBtn').innerText = "Update Item";
+            window.scrollTo(0, 0); // Scroll to top to see form
         }
 
         function resetForm() {
@@ -116,7 +129,7 @@
             localStorage.setItem('myApps', JSON.stringify(data));
         }
 
-        function del(idx) { data.splice(idx, 1); render(); }
+        function del(idx) { if(confirm('Delete this item?')) { data.splice(idx, 1); render(); } }
         function generateJSON() { document.getElementById('output').innerText = JSON.stringify(data, null, 2); }
         function copyToClipboard() { navigator.clipboard.writeText(document.getElementById('output').innerText).then(() => alert("Copied!")); }
 
