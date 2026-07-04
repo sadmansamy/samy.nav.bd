@@ -3,41 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JSON Manager</title>
+    <title>JSON Editor Pro</title>
     <style>
-        body { font-family: sans-serif; padding: 15px; background: #f9f9f9; }
-        .input-group { display: flex; flex-direction: column; gap: 8px; background: #fff; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px; }
-        input, textarea { padding: 12px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px; }
-        button { padding: 12px; cursor: pointer; background: #007bff; color: white; border: none; border-radius: 4px; font-size: 16px; }
-        .item { background: #fff; padding: 15px; margin-bottom: 10px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; border-left: 5px solid #007bff; }
-        .controls button { margin-left: 5px; padding: 8px 12px; background: #eee; color: #333; }
-        pre { background: #333; color: #0f0; padding: 15px; overflow-x: auto; border-radius: 4px; font-size: 14px; }
+        body { font-family: sans-serif; padding: 15px; background: #f4f4f9; }
+        .input-group { background: #fff; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        input { width: 100%; padding: 10px; margin-bottom: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        button { padding: 10px; cursor: pointer; background: #007bff; color: white; border: none; border-radius: 4px; width: 100%; margin-top: 5px; }
+        .item { background: #fff; padding: 10px; margin-bottom: 8px; border-radius: 5px; display: flex; justify-content: space-between; align-items: center; border-left: 4px solid #007bff; }
+        pre { background: #333; color: #0f0; padding: 10px; overflow-x: auto; border-radius: 4px; font-size: 12px; }
     </style>
 </head>
 <body>
 
-    <h3>Import Existing JSON</h3>
-    <textarea id="importArea" style="width: 100%; height: 80px;" placeholder="Paste your existing JSON here..."></textarea>
-    <button onclick="importJSON()" style="width: 100%; margin-top: 5px; background: #28a745;">Load to List</button>
-
-    <h3>Add New Item</h3>
+    <h3>Editor</h3>
     <div class="input-group">
+        <input type="hidden" id="editIndex" value="-1">
         <input type="text" id="name" placeholder="Name">
         <input type="text" id="dis" placeholder="Description">
         <input type="text" id="img" placeholder="Image URL">
-        <input type="text" id="url" placeholder="Main URL">
-        <button onclick="addItem()">Add to List</button>
+        <div id="url-container">
+            <input type="text" class="url-input" placeholder="URL 1">
+            <input type="text" class="url-input" placeholder="URL 2">
+            <input type="text" class="url-input" placeholder="URL 3">
+            <input type="text" class="url-input" placeholder="URL 4">
+        </div>
+        <button onclick="addUrlField()" style="background: #6c757d;">+ Add another URL</button>
+        <button id="saveBtn" onclick="saveItem()" style="background: #28a745; font-weight: bold;">Add to List</button>
     </div>
 
-    <h3>Current List</h3>
+    <h3>App List</h3>
     <div id="app-list"></div>
 
-    <button onclick="generateJSON()" style="width: 100%; margin: 20px 0; background: #333;">Generate JSON Script</button>
-    <button onclick="copyToClipboard()" style="width: 100%; background: #666;">Copy to Clipboard</button>
+    <button onclick="generateJSON()" style="background: #333; margin-top: 20px;">Generate JSON Script</button>
+    <button onclick="copyToClipboard()" style="background: #666;">Copy to Clipboard</button>
     <pre id="output"></pre>
 
     <script>
         let data = JSON.parse(localStorage.getItem('myApps')) || [];
+
+        function addUrlField() {
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.className = 'url-input';
+            input.placeholder = 'Extra URL';
+            document.getElementById('url-container').appendChild(input);
+        }
+
+        function saveItem() {
+            const index = document.getElementById('editIndex').value;
+            const name = document.getElementById('name').value;
+            if(!name) return;
+            
+            const urls = Array.from(document.querySelectorAll('.url-input'))
+                              .map(i => i.value).filter(v => v);
+            
+            const item = { name, dis: document.getElementById('dis').value, img: document.getElementById('img').value, urls };
+
+            if (index == -1) data.push(item);
+            else data[index] = item;
+
+            resetForm();
+            render();
+        }
+
+        function editItem(index) {
+            const item = data[index];
+            document.getElementById('editIndex').value = index;
+            document.getElementById('name').value = item.name;
+            document.getElementById('dis').value = item.dis;
+            document.getElementById('img').value = item.img;
+            
+            // Handle URLs
+            document.getElementById('url-container').innerHTML = '';
+            item.urls.forEach((url, i) => {
+                const input = document.createElement('input');
+                input.className = 'url-input';
+                input.value = url;
+                document.getElementById('url-container').appendChild(input);
+            });
+            // Ensure at least 4 slots
+            while(document.querySelectorAll('.url-input').length < 4) addUrlField();
+            
+            document.getElementById('saveBtn').innerText = "Update Item";
+        }
+
+        function resetForm() {
+            document.getElementById('editIndex').value = -1;
+            document.getElementById('name').value = '';
+            document.getElementById('dis').value = '';
+            document.getElementById('img').value = '';
+            document.getElementById('url-container').innerHTML = `
+                <input type="text" class="url-input" placeholder="URL 1">
+                <input type="text" class="url-input" placeholder="URL 2">
+                <input type="text" class="url-input" placeholder="URL 3">
+                <input type="text" class="url-input" placeholder="URL 4">`;
+            document.getElementById('saveBtn').innerText = "Add to List";
+        }
 
         function render() {
             const list = document.getElementById('app-list');
@@ -45,43 +106,14 @@
             data.forEach((item, index) => {
                 const div = document.createElement('div');
                 div.className = 'item';
-                div.innerHTML = `
-                    <strong>${item.name}</strong>
-                    <div class="controls">
-                        <button onclick="move(${index}, -1)">↑</button>
-                        <button onclick="move(${index}, 1)">↓</button>
-                        <button onclick="del(${index})">X</button>
+                div.innerHTML = `<strong>${item.name}</strong>
+                    <div>
+                        <button onclick="editItem(${index})" style="width: auto; padding: 5px; background: orange;">Edit</button>
+                        <button onclick="del(${index})" style="width: auto; padding: 5px; background: red;">X</button>
                     </div>`;
                 list.appendChild(div);
             });
             localStorage.setItem('myApps', JSON.stringify(data));
-        }
-
-        function importJSON() {
-            const val = document.getElementById('importArea').value;
-            try {
-                data = JSON.parse(val);
-                render();
-            } catch(e) { alert("Invalid JSON format"); }
-        }
-
-        function addItem() {
-            const name = document.getElementById('name').value;
-            if(!name) return;
-            data.push({ name, dis: document.getElementById('dis').value, img: document.getElementById('img').value, urls: [document.getElementById('url').value] });
-            document.getElementById('name').value = '';
-            document.getElementById('dis').value = '';
-            document.getElementById('img').value = '';
-            document.getElementById('url').value = '';
-            render();
-        }
-
-        function move(idx, dir) {
-            const newIdx = idx + dir;
-            if (newIdx >= 0 && newIdx < data.length) {
-                [data[idx], data[newIdx]] = [data[newIdx], data[idx]];
-                render();
-            }
         }
 
         function del(idx) { data.splice(idx, 1); render(); }
