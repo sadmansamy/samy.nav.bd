@@ -2,7 +2,8 @@
   {
     "name": "Play Store (Popular)"
   },
-  {
+  
+{
     "name": "Google's Find Hub",
     "dis": "Locate and secure your lost Android devices.",
     "img": "https://samy.nav.bd/img/35.png",
@@ -52,10 +53,14 @@
       "https://play.google.com/store/apps/details?id=com.tombayley.tileshortcuts"
     ]
   },
-  {
+  
+
+{
     "name": "Open Source (APK)",
   },
-  {
+  
+
+{
     "name": "OuterTune",
     "dis": "A Material Design YouTube Music client for Android.",
     "img": "https://samy.nav.bd/img/19.png",
