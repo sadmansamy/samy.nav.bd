@@ -1,6 +1,6 @@
 [
   {
-    "name": "Popular Play Store Apps"
+    "name": "Play Store (Popular)"
   },
   {
     "name": "Google's Find Hub",
@@ -27,6 +27,16 @@
     ]
   },
   {
+    "name": "Acode",
+    "dis": "Acode is an open-source code editor and web IDE for Android. Edit projects, manage files, use a Linux terminal, work with Git and SSH, and extend your setup with community plugins.",
+    "img": "https://play-lh.googleusercontent.com/PxB4ebclmosav4yUFzvSxswqs2dM10QIhGgv7DHHoo5e6gcLOS55Q-nKOYNxQC-4mR-PHbpEW2-HXENzdMSV=w480-h960-rw",
+    "urls": [
+      "https://play.google.com/store/apps/details?id=com.foxdebug.acodefree&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1",
+      "https://f-droid.org/en/packages/com.foxdebug.acode/",
+      "https://acode.app/"
+    ]
+  },
+  {
     "name": "IMEI Buddy",
     "dis": "Check IMEI information and network status easily.",
     "img": "https://samy.nav.bd/img/32.png",
@@ -43,7 +53,7 @@
     ]
   },
   {
-    "name": "Open Source APKs"
+    "name": "Open Source (APK)",
   },
   {
     "name": "OuterTune",
@@ -96,6 +106,44 @@
     "urls": [
       "https://f-droid.org/packages/com.dot.gallery",
       "https://github.com/IacobIonut01/ReFra/releases/tag/5.0.3"
+    ]
+  },
+  {
+    "name": "SimpMusic",
+    "dis": "A FOSS YouTube Music client for Android and Desktop with many features from Spotify, SponsorBlock, ReturnYouTubeDislike using Compose Multiplatform to develop.",
+    "img": "https://f-droid.org/repo/com.maxrave.simpmusic/en-US/icon_NyVM4inJWSfXS6E9jGgs44E0SjRGG5FlWy-EWV6XlEo=.png",
+    "urls": [
+      "https://f-droid.org/packages/com.maxrave.simpmusic",
+      "https://github.com/maxrave-dev/SimpMusic/releases",
+      "https://www.simpmusic.org/"
+    ]
+  },
+  {
+    "name": "Orion Store",
+    "dis": "A transparent app store built around public releases, inspectable metadata, and automation you can actually follow. Especially it is very helpful for finding mod APK.",
+    "img": "https://raw.githubusercontent.com/RookieEnough/Orion-Store/main/assets/orion_logo_512.png",
+    "urls": [
+      "https://github.com/RookieEnough/Orion-Store/releases"
+    ]
+  },
+  {
+    "name": "Nosved Player",
+    "dis": "Nosved Player is a high-performance, native Android video player built with a focus on absolute playback smoothness, clean aesthetics, and extensive user customization.",
+    "img": "https://devson1024.github.io/assets/NosvedPlayer_icon.png",
+    "urls": [
+      "https://github.com/DevSon1024/Nosved-Player/releases",
+      "https://github.com/DevSon1024/Nosved-Player-Lite/releases"
+    ]
+  },
+{
+    "name": "Mod APK"
+  },
+    {
+    "name": "CamScanner",
+    "dis": "",
+    "img": "https://play-lh.googleusercontent.com/XSoqEDquJuenUosbMN_EA2n2U5lsomPEUdCKj4j9bUdPfdWMCtRqXlyPgQ6zxQxWaDFIXrqbqyFjwXQ5FMYubw",
+    "urls": [
+      "https://www.rockmods.net/search?q=camscanner"
     ]
   }
 ]
