@@ -1,46 +1,49 @@
 [
-  { "name": "Popular Play Store Apps" },
+  {
+    "name": "Popular Play Store Apps"
+  },
   {
     "name": "Google's Find Hub",
     "dis": "Locate and secure your lost Android devices.",
     "img": "https://samy.nav.bd/img/35.png",
-    "urls": ["https://play.google.com/store/apps/details?id=com.google.android.apps.adm"]
+    "urls": [
+      "https://play.google.com/store/apps/details?id=com.google.android.apps.adm"
+    ]
   },
-{
+  {
+    "name": "Vivaldi Browser",
+    "dis": "",
+    "img": "https://samy.nav.bd/img/30.png",
+    "urls": [
+      "https://play.google.com/store/apps/details?id=com.vivaldi.browser"
+    ]
+  },
+  {
     "name": "ONCALL | SIP",
     "dis": "Professional SIP softphone for VoIP calling.",
     "img": "https://samy.nav.bd/img/34.png",
-    "urls": ["https://play.google.com/store/apps/details?id=com.portsip.oncall"]
-  },
-{
-    "name": "Tile Shortcuts",
-    "dis": "Create custom quick settings tiles for your favorite apps.",
-    "img": "https://samy.nav.bd/img/33.png",
-    "urls": ["https://play.google.com/store/apps/details?id=com.tombayley.tileshortcuts"]
+    "urls": [
+      "https://play.google.com/store/apps/details?id=com.portsip.oncall"
+    ]
   },
   {
     "name": "IMEI Buddy",
     "dis": "Check IMEI information and network status easily.",
     "img": "https://samy.nav.bd/img/32.png",
-    "urls": ["https://play.google.com/store/apps/details?id=io.github.chayanforyou.neir"]
+    "urls": [
+      "https://play.google.com/store/apps/details?id=io.github.chayanforyou.neir"
+    ]
   },
-{
-    "name": "Vivaldi Browser",
-    "dis": "",
-    "img": "https://samy.nav.bd/img/30.png",
-    "urls": ["https://play.google.com/store/apps/details?id=com.vivaldi.browser"]
-  },
-
-
-
-
-
-  { "name": "Open Source APKs" },
   {
-    "name": "YTDLnis",
-    "dis": "An advanced YouTube downloader for Android with support for many formats.",
-    "img": "https://raw.githubusercontent.com/deniscerri/ytdlnis/main/fastlane/metadata/android/en-US/images/icon.png",
-    "urls": ["https://github.com/deniscerri/ytdlnis"]
+    "name": "Tile Shortcuts",
+    "dis": "Create custom quick settings tiles for your favorite apps.",
+    "img": "https://samy.nav.bd/img/33.png",
+    "urls": [
+      "https://play.google.com/store/apps/details?id=com.tombayley.tileshortcuts"
+    ]
+  },
+  {
+    "name": "Open Source APKs"
   },
   {
     "name": "OuterTune",
@@ -52,16 +55,47 @@
       "https://github.com/OuterTune/OuterTune"
     ]
   },
-{
-    "name": "WebToApp",
-    "dis": "A Material Design YouTube Music client for Android.",
-    "img": "https://raw.githubusercontent.com/shiaho777/web-to-app/main/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
-    "urls": ["https://github.com/shiaho777/web-to-app"]
+  {
+    "name": "YTDLnis",
+    "dis": "An advanced YouTube downloader for Android with support for many formats.",
+    "img": "https://raw.githubusercontent.com/deniscerri/ytdlnis/main/fastlane/metadata/android/en-US/images/icon.png",
+    "urls": [
+      "https://github.com/deniscerri/ytdlnis"
+    ]
   },
-{
+  {
+    "name": "WebToApp",
+    "dis": "",
+    "img": "https://raw.githubusercontent.com/shiaho777/web-to-app/main/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+    "urls": [
+      "https://github.com/shiaho777/web-to-app"
+    ]
+  },
+  {
     "name": "Caller Info",
     "dis": "CallerInfo is an Android application that provides real-time Caller ID functionalities by seamlessly integrating with the Telegram Caller ID bot (@TrueCalleRobot)",
     "img": "https://samy.nav.bd/img/20.png",
-    "urls": ["https://github.com/rakibulcodes/caller-info"]
+    "urls": [
+      "https://github.com/rakibulcodes/caller-info"
+    ]
+  },
+  {
+    "name": "Droid-ify",
+    "dis": "Browse and install open-source apps from F-Droid repositories with a clean, modern interface",
+    "img": "https://f-droid.org/repo/com.looker.droidify/en-US/icon_lApsnfhrMqGkCaW-IdnYwx86CUjdTutncPvXPJythaM=.png",
+    "urls": [
+      "https://f-droid.org/packages/com.looker.droidify",
+      "https://github.com/Droid-ify/client",
+      "https://droidify.app/"
+    ]
+  },
+  {
+    "name": "ReFra",
+    "dis": "ReFra is a modern, open-source media gallery for Android built with Jetpack Compose. It refracts how you browse, organize, and experience your photos and videos — with AI-powered categories, panorama viewing, motion photo playback, video casting, and a fully customizable Material 3 interface.",
+    "img": "https://f-droid.org/repo/com.dot.gallery/en-US/icon_poVCaExXhiJa_kRsVGmCdIjXXmHG-YkJtckk9SjiFHs=.png",
+    "urls": [
+      "https://f-droid.org/packages/com.dot.gallery",
+      "https://github.com/IacobIonut01/ReFra/releases/tag/5.0.3"
+    ]
   }
 ]
