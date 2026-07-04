@@ -136,7 +136,10 @@
     ]
   },
   {
-    "name": "Mod APK"
+    "name": "Mod APK",
+    "dis": "undefined",
+    "img": "undefined",
+    "urls": []
   },
   {
     "name": "CamScanner",
