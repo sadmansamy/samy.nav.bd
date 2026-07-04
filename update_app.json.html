@@ -6,7 +6,6 @@
     <title>JSON Editor Pro</title>
     <style>
         body { font-family: sans-serif; padding: 15px; background: #f4f4f9; }
-        /* Removed .box styling to make items sit directly on the background */
         input, textarea { width: 100%; padding: 10px; margin-bottom: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
         button { padding: 12px; cursor: pointer; border: none; border-radius: 4px; width: 100%; margin-top: 5px; color: white; font-weight: bold; }
         .item { background: #fff; padding: 10px; margin-bottom: 8px; border-radius: 5px; display: flex; justify-content: space-between; align-items: center; border-left: 4px solid #007bff; }
@@ -15,7 +14,6 @@
         .btn-edit { background: orange; width: auto; padding: 5px; }
         .btn-del { background: red; width: auto; padding: 5px; }
         .btn-danger { background: #dc3545; margin-top: 30px; }
-        h3 { margin-top: 20px; }
     </style>
 </head>
 <body>
@@ -44,7 +42,17 @@
     <button onclick="copyToClipboard()" style="background: #666;">Copy to Clipboard</button>
     <pre id="output"></pre>
 
-    <button onclick="clearAll()" class="btn-danger">Clear All Data</button>
+    <button onclick="showDeleteModal()" class="btn-danger">Delete All</button>
+
+    <div id="deleteModal" style="display:none; position:fixed; top:20%; left:5%; width:90%; background:white; padding:20px; border:1px solid #ccc; border-radius:8px; box-shadow:0 0 10px rgba(0,0,0,0.3); z-index:100;">
+        <p>Type <b>DELETE</b> to delete all:</p>
+        <div style="display:flex; gap:10px; align-items:center; margin-bottom:10px;">
+            <input type="text" id="deleteInput" placeholder="Type DELETE here">
+            <button onclick="copyDeleteText()" style="width: auto; background: #6c757d;">📋</button>
+        </div>
+        <button onclick="confirmDelete()" style="background: #dc3545;">Delete All</button>
+        <button onclick="closeModal()" style="background: #666; margin-top:10px;">Cancel</button>
+    </div>
 
     <script>
         let data = JSON.parse(localStorage.getItem('myApps')) || [];
@@ -124,10 +132,16 @@
         }
 
         function del(idx) { if(confirm('Delete this item?')) { data.splice(idx, 1); render(); } }
-        function clearAll() {
-            const confirmation = prompt("Warning: This will delete ALL data. Type 'DELETE' to confirm:");
-            if (confirmation === 'DELETE') { data = []; localStorage.removeItem('myApps'); render(); }
+
+        function showDeleteModal() { document.getElementById('deleteModal').style.display = 'block'; }
+        function closeModal() { document.getElementById('deleteModal').style.display = 'none'; }
+        function copyDeleteText() { navigator.clipboard.writeText("DELETE").then(() => alert("Copied 'DELETE' to clipboard!")); }
+        function confirmDelete() {
+            const val = document.getElementById('deleteInput').value;
+            if (val === "DELETE") { data = []; localStorage.removeItem('myApps'); render(); closeModal(); document.getElementById('deleteInput').value = ''; }
+            else { alert("Incorrect text! Please type DELETE exactly."); }
         }
+
         function generateJSON() { document.getElementById('output').innerText = JSON.stringify(data, null, 2); }
         function copyToClipboard() { navigator.clipboard.writeText(document.getElementById('output').innerText).then(() => alert("Copied!")); }
 
