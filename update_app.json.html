@@ -6,8 +6,13 @@
     <title>Modern JSON Manager</title>
     <style>
         :root { --primary: #4f46e5; --danger: #ef4444; --bg: #f8fafc; --card: #ffffff; }
-        body { font-family: 'Segoe UI', sans-serif; padding: 20px; background-color: var(--bg); max-width: 600px; margin: auto; }
-        .card { background: var(--card); padding: 20px; border-radius: 16px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        /* Removed top padding and set margin to 0 for a flush top look */
+        body { font-family: 'Segoe UI', sans-serif; padding: 0 15px 20px 15px; background-color: var(--bg); max-width: 600px; margin: auto; }
+        
+        /* Updated card to have bottom rounded corners only, no margin-top */
+        .card { background: var(--card); padding: 20px; border-radius: 0 0 16px 16px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        
+        h3 { margin: 15px 0; color: #1e293b; }
         input, textarea { width: 100%; padding: 12px; margin-bottom: 12px; border: 1px solid #e2e8f0; border-radius: 10px; box-sizing: border-box; }
         button { padding: 12px; cursor: pointer; border: none; border-radius: 10px; width: 100%; color: white; font-weight: 600; transition: 0.2s; }
         .btn-primary { background: var(--primary); }
@@ -21,7 +26,6 @@
 <body>
 
     <div class="card">
-        <h3>Editor</h3>
         <input type="hidden" id="editIndex" value="-1">
         <input type="text" id="name" placeholder="App Name">
         <input type="text" id="dis" placeholder="Description">
@@ -37,20 +41,21 @@
         <button id="saveBtn" onclick="saveItem()" class="btn-primary" style="margin-top:10px;">Add to List</button>
     </div>
 
-    <div style="display: flex; align-items: center; justify-content: space-between;">
+    <div style="padding: 0 5px; display: flex; align-items: center; justify-content: space-between;">
         <h3>App List</h3>
         <button onclick="showImportModal()" style="width: auto; background: #10b981; padding: 8px 15px; font-size: 12px;">Import</button>
     </div>
     <div id="app-list"></div>
 
-    <button onclick="generateJSON()" class="btn-primary" style="margin-top: 20px;">Generate JSON Script</button>
-    <button onclick="copyToClipboard()" style="background: #475569; margin-top: 10px;">Copy to Clipboard</button>
-    <pre id="output">JSON will appear here...</pre>
-
-    <button onclick="showDeleteModal()" style="background: var(--danger); margin-top: 30px;">Delete All</button>
+    <div style="padding: 0 5px;">
+        <button onclick="generateJSON()" class="btn-primary" style="margin-top: 20px;">Generate JSON Script</button>
+        <button onclick="copyToClipboard()" style="background: #475569; margin-top: 10px;">Copy to Clipboard</button>
+        <pre id="output">JSON will appear here...</pre>
+        <button onclick="showDeleteModal()" style="background: var(--danger); margin-top: 30px; margin-bottom: 30px;">Delete All</button>
+    </div>
 
     <div id="importModal" class="modal">
-        <div class="card" style="width: 80%; max-width: 400px;">
+        <div class="card" style="width: 85%; border-radius: 16px;">
             <h3>Import JSON</h3>
             <textarea id="importArea" rows="4" placeholder="Paste JSON here..."></textarea>
             <button onclick="importJSON()" class="btn-primary">Load Data</button>
@@ -59,7 +64,7 @@
     </div>
 
     <div id="deleteModal" class="modal">
-        <div class="card" style="width: 80%; max-width: 400px;">
+        <div class="card" style="width: 85%; border-radius: 16px;">
             <p>Type <b>DELETE</b> to delete all:</p>
             <div style="display:flex; align-items:center; gap:8px; margin-bottom:15px;">
                 <input type="text" id="deleteInput" placeholder="Type DELETE here" style="margin:0;">
