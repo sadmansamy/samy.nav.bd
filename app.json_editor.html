@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Manager Pro</title>
+    <style>
+        :root { --primary: #4f46e5; --danger: #ef4444; --bg: #f8fafc; --card: #ffffff; }
+        body { font-family: 'Segoe UI', sans-serif; padding: 20px; background-color: var(--bg); max-width: 600px; margin: auto; }
+        .card { background: var(--card); padding: 20px; border-radius: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        input { width: 100%; padding: 12px; margin-bottom: 12px; border: 1px solid #e2e8f0; border-radius: 8px; box-sizing: border-box; }
+        button { padding: 10px 15px; cursor: pointer; border: none; border-radius: 8px; color: white; font-weight: 600; }
+        .btn-primary { background: var(--primary); width: 100%; }
+        .item { background: #fff; padding: 10px 15px; margin-bottom: 8px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; border-left: 4px solid #cbd5e1; }
+        .item.section { border-left-color: var(--primary); background: #eef2ff; }
+        pre { background: #1e293b; color: #38bdf8; padding: 15px; border-radius: 12px; overflow-x: auto; white-space: pre-wrap; font-size: 12px; }
+        .modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); align-items:center; justify-content:center; }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <input type="hidden" id="editIndex" value="-1">
+        <input type="text" id="name" placeholder="App/Section Name">
+        <input type="text" id="dis" placeholder="Description (Leave empty for Sections)">
+        <input type="text" id="img" placeholder="Image URL">
+        <div id="url-container">
+            <div class="url-row"><input type="text" class="url-input" placeholder="URL 1"></div>
+            <div class="url-row"><input type="text" class="url-input" placeholder="URL 2"></div>
+            <div class="url-row"><input type="text" class="url-input" placeholder="URL 3"></div>
+        </div>
+        <button id="saveBtn" onclick="saveItem()" class="btn-primary">Add to List</button>
+    </div>
+
+    <h3>App List</h3>
+    <div id="app-list"></div>
+
+    <button onclick="generateJSON()" class="btn-primary" style="margin-top:20px;">Generate Clean JSON</button>
+    <button onclick="copyToClipboard()" style="background: #475569; width: 100%; padding: 12px; margin-top: 10px;">Copy JSON</button>
+    <pre id="output">JSON will appear here...</pre>
+    <button onclick="showDeleteModal()" style="background: var(--danger); width: 100%; padding: 12px; margin-top: 20px;">Delete All</button>
+
+    <div id="deleteModal" class="modal"><div class="card" style="width:80%">Type DELETE to confirm: <input id="deleteInput"><button onclick="confirmDelete()" class="btn-primary">Confirm</button></div></div>
+
+    <script>
+        let data = JSON.parse(localStorage.getItem('myApps')) || [];
+
+        function render() {
+            const list = document.getElementById('app-list');
+            list.innerHTML = '';
+            data.forEach((item, index) => {
+                const isSection = !item.dis && !item.img && (!item.urls || item.urls.length === 0);
+                const div = document.createElement('div');
+                div.className = 'item ' + (isSection ? 'section' : '');
+                div.innerHTML = `<strong>${item.name}</strong> 
+                    <div>
+                        <button onclick="editItem(${index})" style="background:#f59e0b;">Edit</button>
+                        <button onclick="del(${index})" style="background:var(--danger);">X</button>
+                    </div>`;
+                list.appendChild(div);
+            });
+            localStorage.setItem('myApps', JSON.stringify(data));
+        }
+
+        function saveItem() {
+            const name = document.getElementById('name').value;
+            const dis = document.getElementById('dis').value;
+            const img = document.getElementById('img').value;
+            const urls = Array.from(document.querySelectorAll('.url-input')).map(i => i.value).filter(v => v);
+            const index = document.getElementById('editIndex').value;
+
+            // Clean Object: Only include properties if they have values
+            let item = { name };
+            if (dis) item.dis = dis;
+            if (img) item.img = img;
+            if (urls.length > 0) item.urls = urls;
+
+            if (index == -1) data.push(item); else data[index] = item;
+            resetForm(); render();
+        }
+
+        function generateJSON() {
+            // Using JSON.stringify(data, null, 2) creates valid JSON without trailing commas
+            document.getElementById('output').innerText = JSON.stringify(data, null, 2);
+        }
+
+        function editItem(index) {
+            const item = data[index];
+            document.getElementById('editIndex').value = index;
+            document.getElementById('name').value = item.name;
+            document.getElementById('dis').value = item.dis || '';
+            document.getElementById('img').value = item.img || '';
+            const inputs = document.querySelectorAll('.url-input');
+            inputs.forEach((input, i) => input.value = item.urls ? (item.urls[i] || '') : '');
+            document.getElementById('saveBtn').innerText = "Update Item";
+        }
+
+        function resetForm() {
+            document.getElementById('editIndex').value = -1;
+            document.getElementById('name').value = '';
+            document.getElementById('dis').value = '';
+            document.getElementById('img').value = '';
+            document.querySelectorAll('.url-input').forEach(i => i.value = '');
+            document.getElementById('saveBtn').innerText = "Add to List";
+        }
+
+        function del(idx) { data.splice(idx, 1); render(); }
+        function showDeleteModal() { document.getElementById('deleteModal').style.display = 'flex'; }
+        function confirmDelete() { if(document.getElementById('deleteInput').value === 'DELETE') { data = []; render(); document.getElementById('deleteModal').style.display = 'none'; } }
+        function copyToClipboard() { navigator.clipboard.writeText(document.getElementById('output').innerText); alert("Copied!"); }
+        
+        render();
+    </script>
+</body>
+</html>
