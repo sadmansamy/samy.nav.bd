@@ -27,16 +27,6 @@
     ]
   },
   {
-    "name": "Acode",
-    "dis": "Acode is an open-source code editor and web IDE for Android. Edit projects, manage files, use a Linux terminal, work with Git and SSH, and extend your setup with community plugins.",
-    "img": "https://play-lh.googleusercontent.com/PxB4ebclmosav4yUFzvSxswqs2dM10QIhGgv7DHHoo5e6gcLOS55Q-nKOYNxQC-4mR-PHbpEW2-HXENzdMSV=w480-h960-rw",
-    "urls": [
-      "https://play.google.com/store/apps/details?id=com.foxdebug.acodefree&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1",
-      "https://f-droid.org/en/packages/com.foxdebug.acode/",
-      "https://acode.app/"
-    ]
-  },
-  {
     "name": "IMEI Buddy",
     "dis": "Check IMEI information and network status easily.",
     "img": "https://samy.nav.bd/img/32.png",
@@ -52,16 +42,58 @@
       "https://play.google.com/store/apps/details?id=com.tombayley.tileshortcuts"
     ]
   },
-  
-
-
-{
+  {
+    "name": "Acode",
+    "dis": "Acode is an open-source code editor and web IDE for Android. Edit projects, manage files, use a Linux terminal, work with Git and SSH, and extend your setup with community plugins.",
+    "img": "https://play-lh.googleusercontent.com/PxB4ebclmosav4yUFzvSxswqs2dM10QIhGgv7DHHoo5e6gcLOS55Q-nKOYNxQC-4mR-PHbpEW2-HXENzdMSV=w480-h960-rw",
+    "urls": [
+      "https://play.google.com/store/apps/details?id=com.foxdebug.acodefree&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1",
+      "https://f-droid.org/en/packages/com.foxdebug.acode/",
+      "https://acode.app/"
+    ]
+  },
+  {
+    "name": "Image Toolbox",
+    "dis": "ImageToolbox is a versatile image editing tool designed for efficient photo manipulation. It allows users to crop, apply filters, edit EXIF data, erase backgrounds, and even enhance images with AI. Ideal for both photographers and developers, the tool offers a simple interface with powerful capabilities.",
+    "img": "https://samy.nav.bd/img/31.png",
+    "urls": [
+      "https://play.google.com/store/apps/details?id=ru.tech.imageresizershrinker",
+      "https://f-droid.org/packages/ru.tech.imageresizershrinker",
+      "https://github.com/T8RIN/ImageToolbox"
+    ]
+  },
+  {
+    "name": "Jellyfin",
+    "dis": "",
+    "img": "https://samy.nav.bd/img/26.png",
+    "urls": [
+      "https://play.google.com/store/apps/details?id=org.jellyfin.mobile",
+      "https://f-droid.org/packages/org.jellyfin.mobile",
+      "https://github.com/jellyfin/jellyfin-android/releases"
+    ]
+  },
+  {
+    "name": "Streamyfin",
+    "dis": "Streamyfin is a user-friendly Jellyfin video streaming client built with Expo. Designed as an alternative to other Jellyfin clients, it aims to offer a smooth and reliable streaming experience. We hope you'll find it a valuable addition to your media streaming toolbox.",
+    "img": "https://samy.nav.bd/img/36.png",
+    "urls": [
+      "https://play.google.com/store/apps/details?id=com.fredrikburmester.streamyfin",
+      "https://github.com/streamyfin/streamyfin"
+    ]
+  },
+  {
+    "name": "Fladder",
+    "dis": "A cross-platform Jellyfin Frontend built on top of Flutter.",
+    "img": "https://samy.nav.bd/img/37.png",
+    "urls": [
+      "https://play.google.com/store/apps/details?id=nl.jknaapen.fladder",
+      "https://github.com/DonutWare/Fladder"
+    ]
+  },
+  {
     "name": "Open Source (APK)"
   },
- 
-
-
- {
+  {
     "name": "OuterTune",
     "dis": "A Material Design YouTube Music client for Android.",
     "img": "https://samy.nav.bd/img/19.png",
@@ -77,6 +109,34 @@
     "img": "https://raw.githubusercontent.com/deniscerri/ytdlnis/main/fastlane/metadata/android/en-US/images/icon.png",
     "urls": [
       "https://github.com/deniscerri/ytdlnis"
+    ]
+  },
+  {
+    "name": "SimpMusic",
+    "dis": "A FOSS YouTube Music client for Android and Desktop with many features from Spotify, SponsorBlock, ReturnYouTubeDislike using Compose Multiplatform to develop.",
+    "img": "https://f-droid.org/repo/com.maxrave.simpmusic/en-US/icon_NyVM4inJWSfXS6E9jGgs44E0SjRGG5FlWy-EWV6XlEo=.png",
+    "urls": [
+      "https://f-droid.org/packages/com.maxrave.simpmusic",
+      "https://github.com/maxrave-dev/SimpMusic/releases",
+      "https://www.simpmusic.org/"
+    ]
+  },
+  {
+    "name": "ReFra",
+    "dis": "ReFra is a modern, open-source media gallery for Android built with Jetpack Compose. It refracts how you browse, organize, and experience your photos and videos — with AI-powered categories, panorama viewing, motion photo playback, video casting, and a fully customizable Material 3 interface.",
+    "img": "https://f-droid.org/repo/com.dot.gallery/en-US/icon_poVCaExXhiJa_kRsVGmCdIjXXmHG-YkJtckk9SjiFHs=.png",
+    "urls": [
+      "https://f-droid.org/packages/com.dot.gallery",
+      "https://github.com/IacobIonut01/ReFra/releases/tag/5.0.3"
+    ]
+  },
+  {
+    "name": "Round Sync",
+    "dis": "Round Sync is a cloud file manager, powered by rclone. It is a versatile android application that makes use of the venerable Rclone. This allows you to interact with all your favorite Cloud-Providers in an easy-to-use app! We even allow you to automate some of the more tedious tasks!",
+    "img": "https://samy.nav.bd/img/24.png",
+    "urls": [
+      "https://f-droid.org/packages/de.felixnuesse.extract",
+      "https://github.com/newhinton/Round-Sync/releases"
     ]
   },
   {
@@ -96,6 +156,15 @@
     ]
   },
   {
+    "name": "F-Droid",
+    "dis": "F-Droid is the app distribution ecosystem for Android where your user freedom comes first. Discover our app store, explore the world of free and open source (FOSS) apps.",
+    "img": "https://avatars.githubusercontent.com/u/8239603?s=200&v=4",
+    "urls": [
+      "https://f-droid.org/F-Droid.apk",
+      "https://f-droid.org/"
+    ]
+  },
+  {
     "name": "Droid-ify",
     "dis": "Browse and install open-source apps from F-Droid repositories with a clean, modern interface",
     "img": "https://f-droid.org/repo/com.looker.droidify/en-US/icon_lApsnfhrMqGkCaW-IdnYwx86CUjdTutncPvXPJythaM=.png",
@@ -106,30 +175,19 @@
     ]
   },
   {
-    "name": "ReFra",
-    "dis": "ReFra is a modern, open-source media gallery for Android built with Jetpack Compose. It refracts how you browse, organize, and experience your photos and videos — with AI-powered categories, panorama viewing, motion photo playback, video casting, and a fully customizable Material 3 interface.",
-    "img": "https://f-droid.org/repo/com.dot.gallery/en-US/icon_poVCaExXhiJa_kRsVGmCdIjXXmHG-YkJtckk9SjiFHs=.png",
-    "urls": [
-      "https://f-droid.org/packages/com.dot.gallery",
-      "https://github.com/IacobIonut01/ReFra/releases/tag/5.0.3"
-    ]
-  },
-  {
-    "name": "SimpMusic",
-    "dis": "A FOSS YouTube Music client for Android and Desktop with many features from Spotify, SponsorBlock, ReturnYouTubeDislike using Compose Multiplatform to develop.",
-    "img": "https://f-droid.org/repo/com.maxrave.simpmusic/en-US/icon_NyVM4inJWSfXS6E9jGgs44E0SjRGG5FlWy-EWV6XlEo=.png",
-    "urls": [
-      "https://f-droid.org/packages/com.maxrave.simpmusic",
-      "https://github.com/maxrave-dev/SimpMusic/releases",
-      "https://www.simpmusic.org/"
-    ]
-  },
-  {
     "name": "Orion Store",
     "dis": "A transparent app store built around public releases, inspectable metadata, and automation you can actually follow. Especially it is very helpful for finding mod APK.",
     "img": "https://samy.nav.bd/img/18.png",
     "urls": [
       "https://github.com/RookieEnough/Orion-Store/releases"
+    ]
+  },
+  {
+    "name": "PixelPlayer",
+    "dis": "A beautiful, feature-rich music player for Android Built with Jetpack Compose and Material Design 3",
+    "img": "https://raw.githubusercontent.com/PixelPlayerHQ/PixelPlayer/master/assets/icon.png",
+    "urls": [
+      "https://github.com/PixelPlayerHQ/PixelPlayer/releases"
     ]
   },
   {
@@ -151,15 +209,5 @@
     "urls": [
       "https://www.rockmods.net/search?q=camscanner"
     ]
-  },
-  {
-    "name": "F-Droid",
-    "dis": "F-Droid is the app distribution ecosystem for Android where your user freedom comes first. Discover our app store, explore the world of free and open source (FOSS) apps.",
-    "img": "https://avatars.githubusercontent.com/u/8239603?s=200&v=4",
-    "urls": [
-      "https://f-droid.org/F-Droid.apk",
-      "https://f-droid.org/"
-    ]
   }
 ]
-
