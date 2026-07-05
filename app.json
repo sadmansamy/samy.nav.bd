@@ -11,6 +11,33 @@
     ]
   },
   {
+    "name": "Brave",
+    "dis": "The Brave browser blocks ads and trackers that slow you down and invade your privacy. Discover a new way of thinking about how the web can work.",
+    "img": "https://samy.nav.bd/img/28.png",
+    "urls": [
+      "https://play.google.com/store/apps/details?id=com.brave.browser",
+      "https://brave.com/"
+    ]
+  },
+  {
+    "name": "Brave Beta",
+    "dis": "Beta is a stable preview version of Brave that includes soon-to-be-released features. This build showcases the newest advances and is ready for daily use.",
+    "img": "https://samy.nav.bd/img/27.png",
+    "urls": [
+      "https://play.google.com/store/apps/details?id=com.brave.browser_beta",
+      "https://brave.com/download-beta/"
+    ]
+  },
+  {
+    "name": "Microsoft Edge",
+    "dis": "Microsoft Edge is a browser by Microsoft",
+    "img": "https://samy.nav.bd/img/29.png",
+    "urls": [
+      "https://play.google.com/store/apps/details?id=com.microsoft.emmx",
+      "https://explore.microsoft.com/en-us/edge/download?ch=1&form=MA13FJ&page_id=edge%2Fdownload"
+    ]
+  },
+  {
     "name": "Vivaldi Browser",
     "dis": "",
     "img": "https://samy.nav.bd/img/30.png",
@@ -201,6 +228,16 @@
   },
   {
     "name": "Mod APK"
+  },
+  {
+    "name": "RBMods / RockMods",
+    "dis": "A mod APK downloading website",
+    "img": "https://samy.nav.bd/img/38.png",
+    "urls": [
+      "https://www.rockmods.net/",
+      "https://t.me/RBMods",
+      "https://t.me/+VS0Rv2nT_YE2M2Nl"
+    ]
   },
   {
     "name": "CamScanner",
