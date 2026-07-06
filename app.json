@@ -2,6 +2,133 @@
   {
     "name": "Play Store (Popular)"
   },
+  [
+  {
+    "name": "Facebook",
+    "dis": "Social media platform for connecting with friends and family.",
+    "img": "https://samy.nav.bd/img/39.png",
+    "urls": ["https://play.google.com/store/apps/details?id=com.facebook.katana"]
+  },
+  {
+    "name": "Instagram",
+    "dis": "Photo and video sharing social networking service.",
+    "img": "https://samy.nav.bd/img/40.png",
+    "urls": ["https://play.google.com/store/apps/details?id=com.instagram.android"]
+  },
+  {
+    "name": "Facebook Lite",
+    "dis": "Facebook Lite is a smaller, faster version of the Facebook app.",
+    "img": "https://samy.nav.bd/img/41.png",
+    "urls": ["https://play.google.com/store/apps/details?id=com.facebook.lite"]
+  },
+  {
+    "name": "Messenger",
+    "dis": "Instant messaging app from Meta.",
+    "img": "https://samy.nav.bd/img/42.png",
+    "urls": ["https://play.google.com/store/apps/details?id=com.facebook.orca"]
+  },
+  {
+    "name": "WhatsApp",
+    "dis": "Messaging and calling app.",
+    "img": "https://samy.nav.bd/img/43.png",
+    "urls": ["https://play.google.com/store/apps/details?id=com.whatsapp"]
+  },
+  {
+    "name": "imo",
+    "dis": "Video calling and messaging app.",
+    "img": "https://samy.nav.bd/img/44.png",
+    "urls": ["https://play.google.com/store/apps/details?id=com.imo.android.imoim"]
+  },
+  {
+    "name": "Google",
+    "dis": "Google app for search and feed.",
+    "img": "https://samy.nav.bd/img/45.png",
+    "urls": ["https://play.google.com/store/apps/details?id=com.google.android.googlequicksearchbox"]
+  },
+  {
+    "name": "Chrome",
+    "dis": "Fast, secure web browser by Google.",
+    "img": "https://samy.nav.bd/img/46.png",
+    "urls": ["https://play.google.com/store/apps/details?id=com.android.chrome"]
+  },
+  {
+    "name": "Drive",
+    "dis": "Cloud storage and file management.",
+    "img": "https://samy.nav.bd/img/47.png",
+    "urls": ["https://play.google.com/store/apps/details?id=com.google.android.apps.docs"]
+  },
+  {
+    "name": "Gmail",
+    "dis": "Email service by Google.",
+    "img": "https://samy.nav.bd/img/48.png",
+    "urls": ["https://play.google.com/store/apps/details?id=com.google.android.gm"]
+  },
+  {
+    "name": "Maps",
+    "dis": "Navigation and map service.",
+    "img": "https://samy.nav.bd/img/49.png",
+    "urls": ["https://play.google.com/store/apps/details?id=com.google.android.apps.maps"]
+  },
+  {
+    "name": "Files",
+    "dis": "File manager by Google.",
+    "img": "https://samy.nav.bd/img/50.png",
+    "urls": ["https://play.google.com/store/apps/details?id=com.google.android.apps.nbu.files"]
+  },
+  {
+    "name": "Photos",
+    "dis": "Photo storage and sharing.",
+    "img": "https://samy.nav.bd/img/51.png",
+    "urls": ["https://play.google.com/store/apps/details?id=com.google.android.apps.photos"]
+  },
+  {
+    "name": "Phone",
+    "dis": "Default dialer app.",
+    "img": "https://samy.nav.bd/img/52.png",
+    "urls": ["https://play.google.com/store/apps/details?id=com.google.android.dialer"]
+  },
+  {
+    "name": "Contacts",
+    "dis": "Manage your contacts.",
+    "img": "https://samy.nav.bd/img/53.png",
+    "urls": ["https://play.google.com/store/apps/details?id=com.google.android.contacts"]
+  },
+  {
+    "name": "Messages",
+    "dis": "SMS and RCS messaging.",
+    "img": "https://samy.nav.bd/img/54.png",
+    "urls": ["https://play.google.com/store/apps/details?id=com.google.android.apps.messaging"]
+  },
+  {
+    "name": "Gemini",
+    "dis": "AI-powered assistant from Google.",
+    "img": "https://samy.nav.bd/img/55.png",
+    "urls": ["https://play.google.com/store/apps/details?id=com.google.android.apps.bard"]
+  },
+  {
+    "name": "Google Passwords",
+    "dis": "Manage saved passwords.",
+    "img": "https://samy.nav.bd/img/56.png",
+    "urls": ["https://play.google.com/store/apps/details?id=com.google.android.gms.password_manager"]
+  },
+  {
+    "name": "Google Authenticator",
+    "dis": "Two-factor authentication codes.",
+    "img": "https://samy.nav.bd/img/57.png",
+    "urls": ["https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2"]
+  },
+  {
+    "name": "Google Wallet",
+    "dis": "Digital wallet for payments and passes.",
+    "img": "https://samy.nav.bd/img/58.png",
+    "urls": ["https://play.google.com/store/apps/details?id=com.google.android.apps.walletnfcrel"]
+  },
+  {
+    "name": "Google Lens",
+    "dis": "Image recognition technology.",
+    "img": "https://samy.nav.bd/img/59.png",
+    "urls": ["https://play.google.com/store/apps/details?id=com.google.android.GoogleLens"]
+  },
   {
     "name": "Google's Find Hub",
     "dis": "Locate and secure your lost Android devices.",
@@ -9,6 +136,159 @@
     "urls": [
       "https://play.google.com/store/apps/details?id=com.google.android.apps.adm"
     ]
+  },
+{
+    "name": "Safety",
+    "dis": "Personal safety tools.",
+    "img": "https://samy.nav.bd/img/60.png",
+    "urls": ["https://play.google.com/store/apps/details?id=com.google.android.apps.safetyhub"]
+  },
+  {
+    "name": "YouTube",
+    "dis": "Video streaming platform.",
+    "img": "https://samy.nav.bd/img/61.png",
+    "urls": ["https://play.google.com/store/apps/details?id=com.google.android.youtube"]
+  },
+  {
+    "name": "YT Music",
+    "dis": "Music streaming service.",
+    "img": "https://samy.nav.bd/img/62.png",
+    "urls": ["https://play.google.com/store/apps/details?id=com.google.android.apps.youtube.music"]
+  },
+  {
+    "name": "bKash",
+    "dis": "Mobile financial service in Bangladesh.",
+    "img": "https://samy.nav.bd/img/63.png",
+    "urls": ["https://play.google.com/store/apps/details?id=com.bKash.customerapp"]
+  },
+  {
+    "name": "Nagad",
+    "dis": "Mobile financial service in Bangladesh.",
+    "img": "https://samy.nav.bd/img/64.png",
+    "urls": ["https://play.google.com/store/apps/details?id=com.konasl.nagad"]
+  },
+  {
+    "name": "Rocket",
+    "dis": "Mobile banking by Dutch-Bangla Bank.",
+    "img": "https://samy.nav.bd/img/65.png",
+    "urls": ["https://play.google.com/store/apps/details?id=com.dutchbanglabank.rocket"]
+  },
+  {
+    "name": "BRAC Bank Astha",
+    "dis": "Digital banking app.",
+    "img": "https://samy.nav.bd/img/66.png",
+    "urls": ["https://play.google.com/store/apps/details?id=com.bracbank.astha"]
+  },
+  {
+    "name": "NexusPay",
+    "dis": "Card management and payment app.",
+    "img": "https://samy.nav.bd/img/67.png",
+    "urls": ["https://play.google.com/store/apps/details?id=com.dutchbanglabank.nexuspay"]
+  },
+  {
+    "name": "PI Banking",
+    "dis": "City Bank banking app.",
+    "img": "https://samy.nav.bd/img/68.png",
+    "urls": ["https://play.google.com/store/apps/details?id=com.citybank.pibanking"]
+  },
+  {
+    "name": "My Airtel",
+    "dis": "Self-care app for Airtel users.",
+    "img": "https://samy.nav.bd/img/69.png",
+    "urls": ["https://play.google.com/store/apps/details?id=com.airtel.myairtel"]
+  },
+  {
+    "name": "My Robi",
+    "dis": "Self-care app for Robi users.",
+    "img": "https://samy.nav.bd/img/70.png",
+    "urls": ["https://play.google.com/store/apps/details?id=com.robi.myrobi"]
+  },
+  {
+    "name": "MyGP",
+    "dis": "Self-care app for Grameenphone users.",
+    "img": "https://samy.nav.bd/img/71.png",
+    "urls": ["https://play.google.com/store/apps/details?id=com.grameenphone.mygp"]
+  },
+  {
+    "name": "MyBL",
+    "dis": "Self-care app for Banglalink users.",
+    "img": "https://samy.nav.bd/img/72.png",
+    "urls": ["https://play.google.com/store/apps/details?id=net.banglalink.mybl"]
+  },
+  {
+    "name": "My Teletalk",
+    "dis": "Self-care app for Teletalk users.",
+    "img": "https://samy.nav.bd/img/73.png",
+    "urls": ["https://play.google.com/store/apps/details?id=com.teletalk.myteletalk"]
+  },
+  {
+    "name": "BL Power",
+    "dis": "Banglalink rewards app.",
+    "img": "https://samy.nav.bd/img/74.png",
+    "urls": ["https://play.google.com/store/apps/details?id=net.banglalink.blpower"]
+  },
+  {
+    "name": "Microsoft Edge",
+    "dis": "Microsoft Edge is a browser by Microsoft",
+    "img": "https://samy.nav.bd/img/29.png",
+    "urls": [
+      "https://play.google.com/store/apps/details?id=com.microsoft.emmx",
+      "https://explore.microsoft.com/en-us/edge/download?ch=1&form=MA13FJ&page_id=edge%2Fdownload"
+    ]
+  },
+  {
+    "name": "Outlook",
+    "dis": "Email and calendar app.",
+    "img": "https://samy.nav.bd/img/76.png",
+    "urls": ["https://play.google.com/store/apps/details?id=com.microsoft.office.outlook"]
+  },
+  {
+    "name": "OneDrive",
+    "dis": "Cloud storage by Microsoft.",
+    "img": "https://samy.nav.bd/img/77.png",
+    "urls": ["https://play.google.com/store/apps/details?id=com.microsoft.skydrive"]
+  },
+  {
+    "name": "Microsoft Authenticator",
+    "dis": "Microsoft 2FA app.",
+    "img": "https://samy.nav.bd/img/78.png",
+    "urls": ["https://play.google.com/store/apps/details?id=com.azure.authenticator"]
+  },
+  {
+    "name": "Bitwarden",
+    "dis": "Password manager.",
+    "img": "https://samy.nav.bd/img/79.png",
+    "urls": ["https://play.google.com/store/apps/details?id=com.x8bit.bitwarden"]
+  },
+  {
+    "name": "Bitwarden Authenticator",
+    "dis": "2FAS Authenticator.",
+    "img": "https://samy.nav.bd/img/80.png",
+    "urls": ["https://play.google.com/store/apps/details?id=com.twofasapp.2fas"]
+  },
+  {
+    "name": "AOL",
+    "dis": "AOL email and news app.",
+    "img": "https://samy.nav.bd/img/81.png",
+    "urls": ["https://play.google.com/store/apps/details?id=com.aol.mobile.aolapp"]
+  },
+  {
+    "name": "Proton Mail",
+    "dis": "Encrypted email.",
+    "img": "https://samy.nav.bd/img/82.png",
+    "urls": ["https://play.google.com/store/apps/details?id=ch.protonmail.android"]
+  },
+  {
+    "name": "Proton Pass",
+    "dis": "Password manager.",
+    "img": "https://samy.nav.bd/img/83.png",
+    "urls": ["https://play.google.com/store/apps/details?id=ch.proton.android.pass"]
+  },
+  {
+    "name": "addy.io",
+    "dis": "Email alias service.",
+    "img": "https://samy.nav.bd/img/84.png",
+    "urls": ["https://play.google.com/store/apps/details?id=io.addy.android"]
   },
   {
     "name": "Brave",
@@ -29,12 +309,117 @@
     ]
   },
   {
-    "name": "Microsoft Edge",
-    "dis": "Microsoft Edge is a browser by Microsoft",
-    "img": "https://samy.nav.bd/img/29.png",
+    "name": "Telegram",
+    "dis": "Secure messaging.",
+    "img": "https://samy.nav.bd/img/87.png",
+    "urls": ["https://play.google.com/store/apps/details?id=org.telegram.messenger"]
+  },
+  {
+    "name": "Telegram X",
+    "dis": "Experimental Telegram client.",
+    "img": "https://samy.nav.bd/img/88.png",
+    "urls": ["https://play.google.com/store/apps/details?id=org.thunderdog.challegram"]
+  },
+  {
+    "name": "TikTok",
+    "dis": "Short-form video platform.",
+    "img": "https://samy.nav.bd/img/89.png",
+    "urls": ["https://play.google.com/store/apps/details?id=com.ss.android.ugc.trill"]
+  },
+  {
+    "name": "X",
+    "dis": "Social media (formerly Twitter).",
+    "img": "https://samy.nav.bd/img/90.png",
+    "urls": ["https://play.google.com/store/apps/details?id=com.twitter.android"]
+  },
+  {
+    "name": "Threads",
+    "dis": "Text-based conversation app.",
+    "img": "https://samy.nav.bd/img/91.png",
+    "urls": ["https://play.google.com/store/apps/details?id=com.instagram.barcelona"]
+  },
+  {
+    "name": "WeChat",
+    "dis": "All-in-one messaging and social app.",
+    "img": "https://samy.nav.bd/img/92.png",
+    "urls": ["https://play.google.com/store/apps/details?id=com.tencent.mm"]
+  },
+  {
+    "name": "Tether",
+    "dis": "Tether app.",
+    "img": "https://samy.nav.bd/img/93.png",
+    "urls": ["https://play.google.com/store/apps/details?id=com.tether.tether"]
+  },
+  {
+    "name": "Daraz",
+    "dis": "Online shopping.",
+    "img": "https://samy.nav.bd/img/94.png",
+    "urls": ["https://play.google.com/store/apps/details?id=com.daraz.android"]
+  },
+  {
+    "name": "GitHub",
+    "dis": "Code hosting platform.",
+    "img": "https://samy.nav.bd/img/95.png",
+    "urls": ["https://play.google.com/store/apps/details?id=com.github.android"]
+  },
+  {
+    "name": "1.1.1.1",
+    "dis": "Cloudflare DNS.",
+    "img": "https://samy.nav.bd/img/96.png",
+    "urls": ["https://play.google.com/store/apps/details?id=com.cloudflare.onedotonedotonedotone"]
+  },
+  {
+    "name": "Oto Music",
+    "dis": "Offline music player.",
+    "img": "https://samy.nav.bd/img/97.png",
+    "urls": ["https://play.google.com/store/apps/details?id=com.piyush.otomusic"]
+  },
+  {
+    "name": "NekokoLPA 2",
+    "dis": "",
+    "img": "https://samy.nav.bd/img/98.png",
+    "urls": ["https://play.google.com/store/apps/details?id=me.nekoko.lpa"]
+  },
+  {
+    "name": "Shortcut Maker",
+    "dis": "Custom shortcut creator.",
+    "img": "https://samy.nav.bd/img/99.png",
+    "urls": ["https://play.google.com/store/apps/details?id=com.shortcut.maker"]
+  },
+  {
+    "name": "RAR",
+    "dis": "Archive tool.",
+    "img": "https://samy.nav.bd/img/100.png",
+    "urls": ["https://play.google.com/store/apps/details?id=com.rarlab.rar"]
+  },
+  {
+    "name": "Sipnetic",
+    "dis": "VoIP/SIP softphone.",
+    "img": "https://samy.nav.bd/img/17.png",
+    "urls": ["https://play.google.com/store/apps/details?id=com.sipnetic.sipnetic"]
+  },
+  {
+    "name": "Google Docs",
+    "dis": "",
+    "img": "https://samy.nav.bd/img/75.png",
     "urls": [
-      "https://play.google.com/store/apps/details?id=com.microsoft.emmx",
-      "https://explore.microsoft.com/en-us/edge/download?ch=1&form=MA13FJ&page_id=edge%2Fdownload"
+      "https://play.google.com/store/apps/details?id=com.google.android.apps.docs.editors.docs"
+    ]
+  },
+  {
+    "name": "Gallery",
+    "dis": "",
+    "img": "https://samy.nav.bd/img/85.png",
+    "urls": [
+      "https://play.google.com/store/apps/details?id=com.google.android.apps.photosgo"
+    ]
+  },
+  {
+    "name": "Gboard",
+    "dis": "",
+    "img": "https://samy.nav.bd/img/86.png",
+    "urls": [
+      "https://play.google.com/store/apps/details?id=com.google.android.inputmethod.latin"
     ]
   },
   {
