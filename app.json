@@ -1,6 +1,6 @@
 [
   {
-    "name": "Play Store (Popular)"
+    "name": "Play Store"
   },
   {
     "name": "Facebook",
@@ -126,7 +126,7 @@
     "name": "Google Lens",
     "dis": "Image recognition technology.",
     "img": "https://samy.nav.bd/img/59.png",
-    "urls": ["https://play.google.com/store/apps/details?id=com.google.android.GoogleLens"]
+    "urls": ["https://play.google.com/store/apps/details?id=com.google.ar.lens"]
   },
   {
     "name": "Google's Find Hub",
@@ -170,7 +170,7 @@
     "name": "Rocket",
     "dis": "Mobile banking by Dutch-Bangla Bank.",
     "img": "https://samy.nav.bd/img/65.png",
-    "urls": ["https://play.google.com/store/apps/details?id=com.dutchbanglabank.rocket"]
+    "urls": ["https://play.google.com/store/apps/details?id=com.dbbl.mbs.apps.main"]
   },
   {
     "name": "BRAC Bank Astha",
@@ -182,43 +182,43 @@
     "name": "NexusPay",
     "dis": "Card management and payment app.",
     "img": "https://samy.nav.bd/img/67.png",
-    "urls": ["https://play.google.com/store/apps/details?id=com.dutchbanglabank.nexuspay"]
+    "urls": ["https://play.google.com/store/apps/details?id=com.dbbl.nexus.pay"]
   },
   {
     "name": "PI Banking",
-    "dis": "City Bank banking app.",
+    "dis": "Pubali Bank banking app.",
     "img": "https://samy.nav.bd/img/68.png",
-    "urls": ["https://play.google.com/store/apps/details?id=com.citybank.pibanking"]
+    "urls": ["https://play.google.com/store/apps/details?id=com.pubali.internet.banking"]
   },
   {
     "name": "My Airtel",
     "dis": "Self-care app for Airtel users.",
     "img": "https://samy.nav.bd/img/69.png",
-    "urls": ["https://play.google.com/store/apps/details?id=com.airtel.myairtel"]
+    "urls": ["https://play.google.com/store/apps/details?id=net.omobio.airtelsc"]
   },
   {
     "name": "My Robi",
     "dis": "Self-care app for Robi users.",
     "img": "https://samy.nav.bd/img/70.png",
-    "urls": ["https://play.google.com/store/apps/details?id=com.robi.myrobi"]
+    "urls": ["https://play.google.com/store/apps/details?id=net.omobio.robisc"]
   },
   {
     "name": "MyGP",
     "dis": "Self-care app for Grameenphone users.",
     "img": "https://samy.nav.bd/img/71.png",
-    "urls": ["https://play.google.com/store/apps/details?id=com.grameenphone.mygp"]
+    "urls": ["https://play.google.com/store/apps/details?id=com.portonics.mygp"]
   },
   {
     "name": "MyBL",
     "dis": "Self-care app for Banglalink users.",
     "img": "https://samy.nav.bd/img/72.png",
-    "urls": ["https://play.google.com/store/apps/details?id=net.banglalink.mybl"]
+    "urls": ["https://play.google.com/store/apps/details?id=com.arena.banglalinkmela.app"]
   },
   {
     "name": "My Teletalk",
     "dis": "Self-care app for Teletalk users.",
     "img": "https://samy.nav.bd/img/73.png",
-    "urls": ["https://play.google.com/store/apps/details?id=com.teletalk.myteletalk"]
+    "urls": ["https://play.google.com/store/apps/details?id=teletalk.teletalkcustomerapp"]
   },
   {
     "name": "BL Power",
@@ -263,7 +263,7 @@
     "name": "Bitwarden Authenticator",
     "dis": "2FAS Authenticator.",
     "img": "https://samy.nav.bd/img/80.png",
-    "urls": ["https://play.google.com/store/apps/details?id=com.twofasapp.2fas"]
+    "urls": ["https://play.google.com/store/apps/details?id=com.bitwarden.authenticator"]
   },
   {
     "name": "AOL",
@@ -281,13 +281,13 @@
     "name": "Proton Pass",
     "dis": "Password manager.",
     "img": "https://samy.nav.bd/img/83.png",
-    "urls": ["https://play.google.com/store/apps/details?id=ch.proton.android.pass"]
+    "urls": ["https://play.google.com/store/apps/details?id=proton.android.pass"]
   },
   {
     "name": "addy.io",
     "dis": "Email alias service.",
     "img": "https://samy.nav.bd/img/84.png",
-    "urls": ["https://play.google.com/store/apps/details?id=io.addy.android"]
+    "urls": ["https://play.google.com/store/apps/details?id=host.stjin.anonaddy"]
   },
   {
     "name": "Brave",
@@ -347,7 +347,7 @@
     "name": "Tether",
     "dis": "Tether app.",
     "img": "https://samy.nav.bd/img/93.png",
-    "urls": ["https://play.google.com/store/apps/details?id=com.tether.tether"]
+    "urls": ["https://play.google.com/store/apps/details?id=com.tplink.tether"]
   },
   {
     "name": "Daraz",
@@ -371,19 +371,19 @@
     "name": "Oto Music",
     "dis": "Offline music player.",
     "img": "https://samy.nav.bd/img/97.png",
-    "urls": ["https://play.google.com/store/apps/details?id=com.piyush.otomusic"]
+    "urls": ["https://play.google.com/store/apps/details?id=com.piyush.music"]
   },
   {
     "name": "NekokoLPA 2",
     "dis": "",
     "img": "https://samy.nav.bd/img/98.png",
-    "urls": ["https://play.google.com/store/apps/details?id=me.nekoko.lpa"]
+    "urls": ["https://play.google.com/store/apps/details?id=ee.nekoko.nlpa"]
   },
   {
     "name": "Shortcut Maker",
     "dis": "Custom shortcut creator.",
     "img": "https://samy.nav.bd/img/99.png",
-    "urls": ["https://play.google.com/store/apps/details?id=com.shortcut.maker"]
+    "urls": ["https://play.google.com/store/apps/details?id=rk.android.app.shortcutmaker"]
   },
   {
     "name": "RAR",
@@ -395,7 +395,7 @@
     "name": "Sipnetic",
     "dis": "VoIP/SIP softphone.",
     "img": "https://samy.nav.bd/img/17.png",
-    "urls": ["https://play.google.com/store/apps/details?id=com.sipnetic.sipnetic"]
+    "urls": ["https://play.google.com/store/apps/details?id=com.sipnetic.app"]
   },
   {
     "name": "Google Docs",
@@ -502,7 +502,7 @@
     ]
   },
   {
-    "name": "Open Source (APK)"
+    "name": "APKs"
   },
   {
     "name": "OuterTune",
@@ -611,7 +611,7 @@
     ]
   },
   {
-    "name": "Mod APK"
+    "name": "Mod APKs"
   },
   {
     "name": "RBMods / RockMods",
